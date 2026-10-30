@@ -1,11 +1,13 @@
 import * as THREE from "three";
 import { getImpressions } from "./api.js";
 
+const BUBBLE_SIZE_MULTIPLIER = 3;
+
 const BUBBLE_CONFIG = {
-  desktopMinimumDiameter: 30,
-  desktopMaximumDiameter: 140,
-  mobileMinimumDiameter: 28,
-  mobileMaximumDiameter: 92,
+  desktopMinimumDiameter: 30 * BUBBLE_SIZE_MULTIPLIER,
+  desktopMaximumDiameter: 140 * BUBBLE_SIZE_MULTIPLIER,
+  mobileMinimumDiameter: 28 * BUBBLE_SIZE_MULTIPLIER,
+  mobileMaximumDiameter: 92 * BUBBLE_SIZE_MULTIPLIER,
   desktopLimit: 48,
   mobileLimit: 24,
   desktopGap: 7,
@@ -401,13 +403,21 @@ function animateReadout(keyword) {
 
 function pack(keywords, width, height) {
   const mobile = width < 620;
-  const minimum = mobile
+  const configuredMinimum = mobile
     ? BUBBLE_CONFIG.mobileMinimumDiameter
     : BUBBLE_CONFIG.desktopMinimumDiameter;
-  const maximum = mobile
+  const configuredMaximum = mobile
     ? BUBBLE_CONFIG.mobileMaximumDiameter
     : BUBBLE_CONFIG.desktopMaximumDiameter;
   const padding = mobile ? 5 : 9;
+  const maximum = Math.max(
+    1,
+    Math.min(
+      configuredMaximum,
+      Math.min(width, height) - padding * 2,
+    ),
+  );
+  const minimum = Math.min(configuredMinimum, maximum);
   const gap = mobile ? BUBBLE_CONFIG.mobileGap : BUBBLE_CONFIG.desktopGap;
   const placed = [];
 
