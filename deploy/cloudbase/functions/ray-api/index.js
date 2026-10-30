@@ -168,7 +168,7 @@ function parseJsonArray(value) {
 function normalizeKeywords(value) {
   const rawWords = Array.isArray(value)
     ? value
-    : String(value || "").split(/[,，、;；\n]+/);
+    : String(value || "").split(/[\s,，、;；]+/);
   const words = rawWords
     .map((word) => String(word || "").trim())
     .filter(Boolean)

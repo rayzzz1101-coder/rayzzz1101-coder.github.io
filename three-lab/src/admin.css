@@ -271,6 +271,26 @@ p {
   padding: 0.75rem;
 }
 
+.keyword-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  min-height: 2rem;
+}
+
+.keyword-preview .keyword {
+  padding: 0.45rem 0.65rem;
+  background: rgba(255, 255, 255, 0.38);
+  font-size: 0.66rem;
+}
+
+.keyword-preview-hint {
+  align-self: center;
+  color: var(--muted);
+  font: 0.54rem/1.5 var(--mono);
+  letter-spacing: 0.05em;
+}
+
 .record-controls {
   display: flex;
   align-items: center;

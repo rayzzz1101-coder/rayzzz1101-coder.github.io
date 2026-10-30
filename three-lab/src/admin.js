@@ -16,6 +16,14 @@ const interviewTotal = document.querySelector("#interview-total");
 const legacyMemoryTotal = document.querySelector("#legacy-memory-total");
 let token = sessionStorage.getItem(tokenKey) || "";
 
+function parseKeywords(value) {
+  return String(value || "")
+    .split(/[\s,，、;；]+/)
+    .map((word) => word.trim())
+    .filter(Boolean)
+    .filter((word, index, all) => all.indexOf(word) === index);
+}
+
 function createElement(tag, className, text) {
   const element = document.createElement(tag);
   if (className) element.className = className;
@@ -169,8 +177,10 @@ function renderInterview(item) {
   const keywordLabel = createElement("label", null, "审核后的关键词");
   const keywordInput = createElement("input");
   keywordInput.type = "text";
-  keywordInput.placeholder = "温柔，安静，可靠";
-  keywordInput.value = item.keywords.join("，");
+  keywordInput.placeholder = "温柔 安静 可靠";
+  keywordInput.value = item.keywords.join(" ");
+  const keywordPreview = createElement("div", "keyword-preview");
+  keywordPreview.setAttribute("aria-live", "polite");
   const controls = createElement("div", "record-controls");
   const publicLabel = createElement("label");
   const publicInput = createElement("input");
@@ -179,6 +189,21 @@ function renderInterview(item) {
   publicLabel.append(publicInput, document.createTextNode("在主页公开"));
   const save = createElement("button", "record-save", "保存关键词");
   save.type = "button";
+  const renderKeywordPreview = () => {
+    const words = parseKeywords(keywordInput.value);
+    keywordPreview.replaceChildren();
+    if (!words.length) {
+      keywordPreview.append(
+        createElement("span", "keyword-preview-hint", "输入空格后自动拆分"),
+      );
+      return;
+    }
+    words.forEach((word) => {
+      keywordPreview.append(createElement("span", "keyword", word));
+    });
+  };
+  keywordInput.addEventListener("input", renderKeywordPreview);
+  renderKeywordPreview();
   save.addEventListener("click", async () => {
     save.disabled = true;
     setStatus(adminStatus, "正在保存采访关键词…");
@@ -186,7 +211,7 @@ function renderInterview(item) {
       await authorizedFetch(`/api/v1/interviews/${item.id}/keywords`, {
         method: "POST",
         body: JSON.stringify({
-          keywords: keywordInput.value,
+          keywords: parseKeywords(keywordInput.value),
           public: publicInput.checked,
         }),
       });
@@ -201,7 +226,7 @@ function renderInterview(item) {
     }
   });
   controls.append(publicLabel, save);
-  editor.append(keywordLabel, keywordInput, controls);
+  editor.append(keywordLabel, keywordInput, keywordPreview, controls);
   article.append(copy, editor);
   return article;
 }
