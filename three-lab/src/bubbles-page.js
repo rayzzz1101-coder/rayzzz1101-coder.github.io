@@ -1,13 +1,11 @@
 import * as THREE from "three";
 import { getImpressions } from "./api.js";
 
-const BUBBLE_SIZE_MULTIPLIER = 5;
-
 const BUBBLE_CONFIG = {
-  desktopMinimumDiameter: 30 * BUBBLE_SIZE_MULTIPLIER,
-  desktopMaximumDiameter: 140 * BUBBLE_SIZE_MULTIPLIER,
-  mobileMinimumDiameter: 28 * BUBBLE_SIZE_MULTIPLIER,
-  mobileMaximumDiameter: 92 * BUBBLE_SIZE_MULTIPLIER,
+  desktopMinimumDiameter: 88,
+  desktopMaximumDiameter: 150,
+  mobileMinimumDiameter: 82,
+  mobileMaximumDiameter: 140,
   desktopLimit: 48,
   mobileLimit: 24,
   desktopGap: 7,
@@ -420,15 +418,16 @@ function pack(keywords, width, height) {
   const minimum = Math.min(configuredMinimum, maximum);
   const gap = mobile ? BUBBLE_CONFIG.mobileGap : BUBBLE_CONFIG.desktopGap;
   const placed = [];
+  const highestCount = Math.max(1, ...keywords.map((keyword) => keyword.count));
 
   keywords
     .slice()
     .sort((first, second) => second.count - first.count)
     .forEach((keyword) => {
-      const diameter = Math.max(
-        minimum,
-        Math.min(maximum, 26 * Math.sqrt(keyword.count)),
-      );
+      const countProgress =
+        highestCount > 1 ? (keyword.count - 1) / (highestCount - 1) : 1;
+      const diameter =
+        minimum + (maximum - minimum) * countProgress;
       const radius = diameter / 2;
       const random = seededValue(hashString(keyword.id));
       const startAngle = random() * Math.PI * 2;
