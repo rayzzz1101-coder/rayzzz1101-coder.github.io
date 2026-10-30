@@ -19,20 +19,16 @@ cd three-lab
 
 ## 线上站点与后台
 
-- 公开网站：<https://ray-question-box.ray-questionbox.workers.dev/>
-- 私密后台：<https://ray-question-box.ray-questionbox.workers.dev/admin>
+- 公开网站：<https://rayzzz1101-coder.github.io/>
+- 私密后台：<https://rayzzz1101-coder.github.io/admin.html>
+- 回退站点：<https://ray-question-box.ray-questionbox.workers.dev/>
 
-线上版本由旧 `ray-question-box` Cloudflare Worker、同一 D1 数据库与当前
-`three-lab/dist/` 共同提供。部署入口和迁移位于项目根目录的 `deploy/`。
+公开页面由 GitHub Pages 自动构建和托管；数据、鉴权与管理 API 继续由现有
+`ray-question-box` Cloudflare Worker 和 D1 数据库提供。部署入口和迁移位于
+项目根目录的 `deploy/`。
 
 ```sh
-cd three-lab
-/Users/zzz/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node \
-  node_modules/vite/bin/vite.js build
-cd ..
-env PATH=/Users/zzz/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin:/usr/bin:/bin \
-  /Users/zzz/Documents/ChatGPT/play/node_modules/.bin/wrangler \
-  d1 migrations apply ray-question-box --remote --config deploy/wrangler.toml
+git push origin main
 env PATH=/Users/zzz/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin:/usr/bin:/bin \
   /Users/zzz/Documents/ChatGPT/play/node_modules/.bin/wrangler \
   deploy --config deploy/wrangler.toml
