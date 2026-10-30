@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { getImpressions } from "./api.js";
 
-const BUBBLE_SIZE_MULTIPLIER = 3;
+const BUBBLE_SIZE_MULTIPLIER = 5;
 
 const BUBBLE_CONFIG = {
   desktopMinimumDiameter: 30 * BUBBLE_SIZE_MULTIPLIER,
@@ -695,6 +695,7 @@ function render() {
     );
     bubble.style.width = `${diameter}px`;
     bubble.style.height = `${diameter}px`;
+    bubble.style.fontSize = `${Math.min(24, Math.max(12, diameter * 0.14))}px`;
     bubble.style.left = `${model.x}px`;
     bubble.style.top = `${model.y}px`;
     bubble.style.setProperty("--bubble-delay", `${-((index * 1.7) % 9)}s`);
