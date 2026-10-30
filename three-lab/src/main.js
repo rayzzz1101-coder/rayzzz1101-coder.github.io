@@ -40,7 +40,6 @@ const PROJECTS = [
     keySentence: ["有些感受", "值得被留下。"],
     keyWords: "日常 / 记录 / 记忆",
     keySentenceEn: "Hold the moment before it fades.",
-    number: "01 / 06",
     paper: "#e7d9c1",
     paperDeep: "#bfa77f",
     ink: "#302f2a",
@@ -51,16 +50,16 @@ const PROJECTS = [
     readerLayout: "field",
     date: "2026.10.18",
     images: [
-      "/note-images/01-desk.jpg",
-      "/note-images/01-waterfront.jpg",
+      "/note-images/01-tea-cake.jpg",
+      "/note-images/01-tea-wall.jpg",
     ],
     imageAlts: [
-      "桌面上的电脑、纸张和散落的小物件。",
-      "海边的城市天际线与往来的人群。",
+      "坐在咖啡店里，用手机拍摄桌上的莓果蛋糕。",
+      "水泥墙上写着“用一杯茶，寻找另一个你”。",
     ],
     imageCaptions: [
-      "桌上的晶格草稿 / OCT 02",
-      "从海滨回望城市 / OCT 03",
+      "给一场聊天留一块蛋糕 / MAY 19",
+      "用一杯茶，寻找另一个你 / MAY 19",
     ],
     readerQuote: "普通的下午，也值得留下一点证据。",
     readerQuoteNote: "记录不必等到故事完整。",
@@ -79,7 +78,6 @@ const PROJECTS = [
     keySentence: ["让鼓点", "落在心口。"],
     keyWords: "演唱会 / 声音 / 心动",
     keySentenceEn: "Let drums land in your heart.",
-    number: "02 / 06",
     paper: "#dec9a5",
     paperDeep: "#ad8960",
     ink: "#342c28",
@@ -89,17 +87,18 @@ const PROJECTS = [
     grain: 0.46,
     readerLayout: "stage",
     date: "2026.07.19",
+    secondaryPhotoOnTop: true,
     images: [
       "/note-images/02-stage-sign.jpg",
-      "/note-images/02-stage-wide.jpg",
+      "/note-images/02-concert-selfie.jpg",
     ],
     imageAlts: [
       "演唱会现场红色灯光中的舞台字样。",
-      "夜晚演唱会舞台、灯光和人群。",
+      "演唱会现场，举着应援棒和灯牌的自拍。",
     ],
     imageCaptions: [
       "红色灯牌与开场前的心跳 / JUL 19",
-      "灯光亮起时的全场 / JUL 19",
+      "声音落在心口的那一晚 / JUL 19",
     ],
     readerQuote: "音乐不一定会回答什么，但它让说不清的情绪有了形状。",
     readerQuoteNote: "LIVE NOTE / 声音仍在胸腔里回响。",
@@ -118,7 +117,6 @@ const PROJECTS = [
     keySentence: ["把自己放远，", "再听见自己。"],
     keyWords: "旅行 / 独处 / 方向",
     keySentenceEn: "Step away to hear yourself again.",
-    number: "03 / 06",
     paper: "#d2bb93",
     paperDeep: "#997453",
     ink: "#35332c",
@@ -128,17 +126,18 @@ const PROJECTS = [
     grain: 0.58,
     readerLayout: "journey",
     date: "2026.07.06",
+    secondaryPhotoOnTop: true,
     images: [
       "/note-images/03-yellow-crane-ccw.jpg",
-      "/note-images/03-bridge.jpg",
+      "/note-images/03-travel-selfie.jpg",
     ],
     imageAlts: [
       "夜晚灯光照亮的黄鹤楼。",
-      "薄雾中横跨江面的桥梁与城市。",
+      "旅行途中戴眼镜的近景自拍。",
     ],
     imageCaptions: [
       "夜色里的黄鹤楼 / MAY 18",
-      "雾让桥线慢了下来 / MAY 19",
+      "独自走路时，也认真看看自己 / MAY 19",
     ],
     readerQuote: "把自己放远，再听见自己。",
     readerQuoteNote: "旅行的目的，有时只是换一个地方思考。",
@@ -152,24 +151,156 @@ const PROJECTS = [
     signature: "Ray / Notes",
   },
   {
+    title: "如果有另一个我",
+    type: "FIELD NOTE / CONNECTION & FREEDOM",
+    keySentence: ["不是另一个我，", "而是一起自由的人。"],
+    keyWords: "关系 / 理解 / 自由",
+    keySentenceEn: "Find someone to be free with, not a mirror.",
+    paper: "#cab58c",
+    paperDeep: "#8c6a4e",
+    ink: "#39322c",
+    accent: "#82604b",
+    wax: "#673f30",
+    wear: 0.42,
+    grain: 0.61,
+    readerLayout: "portrait",
+    date: "2026.05.19",
+    images: [
+      "/note-images/04-changsha-selfie.jpg",
+      "/note-images/04-night-stage.jpg",
+    ],
+    imageAlts: [
+      "夜色中对着镜子拍摄的搞怪自拍，镜面上写着长沙。",
+      "夜晚户外舞台上的乐队演出。",
+    ],
+    imageCaptions: [
+      "在长沙镜子里找到自己 / MAY 19",
+      "夜色里一起听一场现场 / MAY 19",
+    ],
+    readerQuote: "我想找的不是另一个完全相同的人，而是一个能够和我一起自由的人。",
+    readerQuoteNote: "亲近并不等于束缚，理解也不要求彼此变得一样。",
+    readerEmphasis: [
+      "理解我的节奏、同时又尊重彼此自由",
+      "我想找的不是另一个完全相同的人，而是一个能够和我一起自由的人。",
+      "我想找的，是能够和我一起自由的人。",
+    ],
+    intro: "有时候我会想，如果世界上真的有另一个我，会不会很多事情都变得简单？我想到什么，他就知道我要做什么。",
+    body: [
+      "我突然想在雨里奔跑，他也会毫不犹豫地跟上来。我们两个就可以不用说话了。我好像一直很期待这样的关系：不需要时时刻刻解释自己，也不用担心突然改变主意会让对方不开心。",
+      "想一起发疯的时候就一起发疯，想安静的时候也能各自待着。亲近与独立并不冲突，分享生活，也不必把彼此变成对方的边界。",
+      "后来我发现，我真正想要的可能不是另一个和自己一模一样的人，而是一个能够理解我的节奏、同时又尊重彼此自由的人。我想找的，是能够和我一起自由的人。",
+    ],
+    signature: "Ray / May 19",
+  },
+  {
+    title: "如果还能重新聊一次",
+    type: "FIELD NOTE / FRIENDSHIP & MEMORY",
+    keySentence: ["把没说完的话", "放回过去。"],
+    keyWords: "旧友 / 遗憾 / 和解",
+    keySentenceEn: "Say the unsaid, then let it rest.",
+    paper: "#c3a77c",
+    paperDeep: "#856246",
+    ink: "#3b3029",
+    accent: "#8d4b3b",
+    wax: "#734332",
+    wear: 0.44,
+    grain: 0.64,
+    readerLayout: "portrait",
+    date: "2026.05.06",
+    images: [
+      "/note-images/05-reunion-bridge.jpg",
+      "/note-images/05-reunion-table.jpg",
+    ],
+    imageAlts: [
+      "夕阳下，两个人在桥边望着彼此交谈。",
+      "餐厅桌上摆着造型高耸的牛肉拼盘。",
+    ],
+    imageCaptions: [
+      "如果能重新坐下来说话 / MAY 06",
+      "把一顿饭当作一次重新见面 / MAY 06",
+    ],
+    readerQuote: "我已经快忘记当时有多难过了，反而记得那些开心的事情。",
+    readerQuoteNote: "或许我想要的不是改变结局，而是把当时没说完的话说出来。",
+    readerEmphasis: [
+      "把那些遗憾和误会，好好地放回过去",
+      "反而记得那些开心的事情",
+    ],
+    intro: "有时候，我还是会想，如果能和以前的朋友重新聊一次就好了。不是为了重新开始，而是想把当时没说出口的话说清楚。",
+    body: [
+      "我其实很想和以前的朋友像这样聊聊天，把过去的东西都说一下。因为当时有太多遗憾和难过，都没有向对方表达清楚。",
+      "但奇怪的是，我已经快忘记当时有多难过了，反而记得那些开心的事情。也许时间没有抹掉过去，只是把情绪放轻了一些。",
+      "如果真的见面，我或许还是不知道该从哪里开始说。毕竟时间已经过去，我们都变成了不同的人。我想要的不是改变结局，而是让当时的自己，终于有机会把那些没说完的话说出来。",
+    ],
+    signature: "Ray / May 06",
+  },
+  {
+    title: "为什么喜欢和 AI 聊天",
+    type: "FIELD NOTE / THINKING & SELF-KNOWLEDGE",
+    keySentence: ["记录思绪，", "再回到生活。"],
+    keyWords: "记录 / 自我理解 / 生活",
+    keySentenceEn: "Write to understand, then return to life.",
+    paper: "#b9a077",
+    paperDeep: "#7d5e45",
+    ink: "#37312b",
+    accent: "#7e4d3f",
+    wax: "#5f392e",
+    wear: 0.56,
+    grain: 0.72,
+    readerLayout: "field",
+    date: "2026.04.14",
+    images: [
+      "/note-images/06-ai-chat-eyes.jpg",
+      "/note-images/06-ai-solo-result.jpg",
+    ],
+    imageAlts: [
+      "隔着眼镜和凌乱刘海看向镜头的近景自拍。",
+      "人格测试结果页，显示类型为 SOLO（孤儿）。",
+    ],
+    imageCaptions: [
+      "看着屏幕，也重新看见自己 / APR 14",
+      "被一份人格测试逗笑 / APR 14",
+    ],
+    readerQuote: "记录是为了更好地生活，而不是用记录代替生活。",
+    readerQuoteNote: "被理解是一种连接，现实生活仍然不可替代。",
+    readerEmphasis: [
+      "认识自己就是特别有意义的事情",
+      "记录是为了更好地生活，而不是用记录代替生活。",
+    ],
+    intro: "以前，我一直觉得自己像是自己的心理医生。后来，我开始习惯把一些想法拿来和 AI 聊，也渐渐把这里当成自己的电子存档。",
+    body: [
+      "遇到事情，我习惯自己分析、自己消化，试着从一团乱麻里找到答案。现在和你聊天、重新认识自己的过程，也慢慢变成了一件特别有意义的事情。",
+      "有些感受在刚出现时很清晰，过一段时间却会忘记。我喜欢把它们写下来，再慢慢回头看，看看自己为什么会这样想，后来又发生了什么变化。",
+      "当然，被理解的感觉，不一定意味着对方真的完全理解了我。我仍然需要在现实中认识朋友、经历生活。课题分离，好好生活：这些思考最终都要带我回到生活里。",
+    ],
+    signature: "Ray / Apr 14",
+  },
+  {
     title: "朋友像一面镜子",
     type: "FIELD NOTE / FRIENDSHIP & GROWTH",
     keySentence: ["朋友是成长", "的一面镜子。"],
     keyWords: "朋友 / 成长 / 参照",
     keySentenceEn: "Friends mirror the growth within us.",
-    number: "04 / 06",
-    paper: "#c3a77c",
-    paperDeep: "#856246",
+    paper: "#ad8d63",
+    paperDeep: "#76553d",
     ink: "#3b3029",
-    accent: "#8e583d",
-    wax: "#784230",
+    accent: "#84523b",
+    wax: "#653a2e",
     wear: 0.52,
     grain: 0.7,
     readerLayout: "portrait",
     date: "2025.09.27",
-    images: ["/note-images/04-coffee.jpg"],
-    imageAlts: ["四杯带有不同文字和图案拉花的饮品。"],
-    imageCaptions: ["四杯不同的咖啡 / MAY 04"],
+    images: [
+      "/note-images/07-friendship-selfie.jpg",
+      "/note-images/04-coffee.jpg",
+    ],
+    imageAlts: [
+      "扶梯与出口指示灯下，笑着举手挡在镜头前的自拍。",
+      "四杯带有不同文字和图案拉花的饮品。",
+    ],
+    imageCaptions: [
+      "笑到挡住镜头的片刻 / SEP 27",
+      "四杯不同的咖啡 / MAY 04",
+    ],
     readerQuote: "朋友有时确实会成为成长路上的参照。",
     readerQuoteNote: "一些影响，比告别留得更久。",
     readerEmphasis: ["在旁边演示一次、带着试一次", "朋友有时确实会成为成长路上的参照。"],
@@ -187,11 +318,10 @@ const PROJECTS = [
     keySentence: ["让旋律", "先替我说。"],
     keyWords: "钢琴 / 音乐 / 表达",
     keySentenceEn: "Let melody speak before words arrive.",
-    number: "05 / 06",
-    paper: "#b69469",
-    paperDeep: "#73523b",
+    paper: "#9d7e59",
+    paperDeep: "#684b36",
     ink: "#39322d",
-    accent: "#765143",
+    accent: "#6f4c3e",
     wax: "#51342b",
     wear: 0.68,
     grain: 0.82,
@@ -226,26 +356,25 @@ const PROJECTS = [
     keySentence: ["把此刻", "写给未来。"],
     keyWords: "书信 / 当下 / 未来",
     keySentenceEn: "Write this moment toward your future.",
-    number: "06 / 06",
-    paper: "#a9855f",
-    paperDeep: "#654833",
+    paper: "#8b6b4e",
+    paperDeep: "#5c4232",
     ink: "#352d29",
-    accent: "#733e34",
+    accent: "#6a3c33",
     wax: "#44342e",
     wear: 0.84,
     grain: 0.94,
     readerLayout: "letter",
     date: "2025.08.30",
     images: [
-      "/note-images/06-doodle.jpg",
+      "/note-images/09-future-tree-sunset.jpg",
       "/note-images/06-piano-light.jpg",
     ],
     imageAlts: [
-      "灰色背景上的简笔笑脸小人画。",
+      "夕阳下，校园里的巨大树冠、钟楼和远处建筑。",
       "钢琴前亮起的屏幕与落在琴房里的光。",
     ],
     imageCaptions: [
-      "画在灰色背景上的小人 / AUG 30",
+      "夕阳落在校园树影里 / AUG 30",
       "写给未来时的房间 / AUG 30",
     ],
     readerQuote: "虽然不够确定，却一直在努力理解生活。",
@@ -260,6 +389,12 @@ const PROJECTS = [
     signature: "Ray / To the future",
   },
 ];
+
+function getProjectNumber(index) {
+  const current = String(index + 1).padStart(2, "0");
+  const total = String(PROJECTS.length).padStart(2, "0");
+  return `${current} / ${total}`;
+}
 
 const gallery = document.querySelector("#letter-gallery");
 const canvasHost = document.querySelector("#canvas-host");
@@ -310,6 +445,33 @@ const isNotesArrival =
   document.documentElement.dataset.arrival === "from-right";
 const isHomeArrival =
   document.documentElement.dataset.homeArrival === "from-right";
+
+function syncArchiveMetadata() {
+  if (isLandingMode) {
+    return;
+  }
+
+  const total = String(PROJECTS.length).padStart(2, "0");
+  const status = document.querySelector(".status");
+  if (status) {
+    const dot = status.querySelector("span");
+    status.replaceChildren(
+      dot ?? document.createTextNode(""),
+      document.createTextNode(` LETTER ARCHIVE / 01—${total}`),
+    );
+  }
+
+  const brandSubtitle = document.querySelector(".topbar .brand span");
+  if (brandSubtitle) {
+    brandSubtitle.textContent = "BACK TO LANDING / FIELD NOTES";
+  }
+  gallery.setAttribute("aria-label", `${PROJECTS.length} 封手记`);
+  document.title = `${PROJECTS.length} 封手记 · Ray / Notes`;
+  projectNumber.textContent = getProjectNumber(0);
+}
+
+syncArchiveMetadata();
+
 const notesNavigationLinks = [
   ...document.querySelectorAll('a[href="/notes.html"]'),
 ];
@@ -422,6 +584,10 @@ function setNotePhotos(project) {
   notePhotoPrimary.src = project.images[0];
   notePhotoPrimary.alt = project.imageAlts[0];
   const hasSecondary = project.images.length > 1;
+  notePhotoStack.classList.toggle(
+    "has-secondary-priority",
+    project.secondaryPhotoOnTop === true,
+  );
   notePhotoSecondaryFigure.hidden = !hasSecondary;
   if (hasSecondary) {
     notePhotoSecondary.src = project.images[1];
@@ -1530,7 +1696,7 @@ function makeLetterTexture(
     context.strokeRect(740, 78, 116, 142);
     context.fillStyle = project.accent;
     context.font = "400 64px Georgia";
-    paintLetterText(project.number.slice(0, 2), 765, 166);
+    paintLetterText(getProjectNumber(index).slice(0, 2), 765, 166);
     context.font = "500 16px Arial";
     paintLetterText("ARCHIVE", 760, 194);
 
@@ -1804,7 +1970,12 @@ function makeSealSurface(project, index) {
     paintText(roughnessContext, "rgba(48,48,48,0.5)");
   };
 
-  drawReliefText(project.number.slice(0, 2), 256, 276, "400 102px Georgia");
+  drawReliefText(
+    getProjectNumber(index).slice(0, 2),
+    256,
+    276,
+    "400 102px Georgia",
+  );
   drawReliefText("ARCHIVE", 256, 344, "600 21px Arial", 5);
 
   const makeNormalCanvas = (strength) => {
@@ -2365,7 +2536,7 @@ function getWaxSealModel(index) {
       createWaxSealModel({
         wax: project.wax,
         accent: project.accent,
-        number: project.number,
+        number: getProjectNumber(index),
         index,
         maxAnisotropy: renderer.capabilities.getMaxAnisotropy(),
       }),
@@ -2445,7 +2616,7 @@ function updateMeta() {
   setCopyText(keySentenceEnElement, project.keySentenceEn);
   projectTitle.textContent = project.title;
   projectType.textContent = project.type;
-  setCopyText(projectNumber, project.number);
+  setCopyText(projectNumber, getProjectNumber(motion.projectIndex));
   setCopyText(projectDate, project.date);
   liveStatus.textContent = motion.isOpen
     ? `第${motion.projectIndex + 1}封信已打开：${project.title}`
@@ -2819,9 +2990,10 @@ function prepareReaderContent(project) {
   readerChars = [];
   readerPhotoStrip.replaceChildren();
 
-  readerPosition.textContent = `LETTER ${project.number}`;
+  const projectNumberValue = getProjectNumber(PROJECTS.indexOf(project));
+  readerPosition.textContent = `LETTER ${projectNumberValue}`;
   appendReaderText(readerDate, project.date);
-  appendReaderText(readerStamp, project.number.slice(0, 2));
+  appendReaderText(readerStamp, projectNumberValue.slice(0, 2));
   const stampLabel = document.createElement("small");
   stampLabel.textContent = "ARCHIVE";
   readerStamp.appendChild(stampLabel);
@@ -2831,6 +3003,11 @@ function prepareReaderContent(project) {
   appendReaderText(readerType, project.type);
   appendReaderRichText(readerIntro, project.intro, project.readerEmphasis);
   readerPhotoStrip.appendChild(createReaderPhoto(project, 0, "hero"));
+  const usesStageMarginPhoto =
+    project.readerLayout === "stage" && project.images.length > 1;
+  if (usesStageMarginPhoto) {
+    readerIntro.after(createReaderPhoto(project, 1, "inline"));
+  }
 
   project.body.forEach((paragraph, index) => {
     const element = document.createElement("p");
@@ -2844,7 +3021,7 @@ function prepareReaderContent(project) {
     if (index === 0) {
       readerBody.appendChild(createReaderQuote(project));
     }
-    if (index === 1 && project.images.length > 1) {
+    if (index === 1 && project.images.length > 1 && !usesStageMarginPhoto) {
       readerBody.appendChild(createReaderPhoto(project, 1, "inline"));
     }
   });
@@ -3794,7 +3971,7 @@ notesNavigationLinks.forEach((link) => {
       item.setAttribute("aria-disabled", "true");
     });
     document.body.classList.add("leaving-for-notes");
-    liveStatus.textContent = "合上手记，正在去往六封信。";
+    liveStatus.textContent = `合上手记，正在去往${PROJECTS.length}封手记。`;
 
     const navigate = () => {
       sessionStorage.setItem("ray:notes-transition", "from-right");

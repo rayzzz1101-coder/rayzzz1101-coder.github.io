@@ -329,6 +329,26 @@ body.reader-open .mobile-letter-nav {
   background: #d9cfbe;
 }
 
+.note-photo img[src*="02-concert-selfie"],
+.reader-photo img[src*="02-concert-selfie"] {
+  object-position: center 24%;
+}
+
+.note-photo img[src*="03-travel-selfie"] {
+  aspect-ratio: 3 / 4;
+  object-position: center;
+}
+
+.note-photo img[src*="05-reunion-bridge"] {
+  aspect-ratio: 16 / 9;
+  object-position: center;
+}
+
+.reader-layout--journey .reader-photo--inline img[src*="03-travel-selfie"] {
+  aspect-ratio: 3 / 4;
+  object-position: center;
+}
+
 .note-photo figcaption {
   position: absolute;
   right: 0.55rem;
@@ -345,6 +365,10 @@ body.reader-open .mobile-letter-nav {
   z-index: -1;
   width: 62%;
   transform: rotate(-4.5deg);
+}
+
+.note-photo-stack.has-secondary-priority .note-photo-secondary {
+  z-index: 2;
 }
 
 .hero-copy {
@@ -1093,11 +1117,16 @@ body.notes-leaving .note-photo-stack {
   margin: 0;
   padding-top: clamp(2.5rem, 4vw, 4rem);
   grid-template-columns: minmax(12rem, 0.32fr) minmax(0, 1fr);
+  grid-template-areas:
+    "intro body"
+    "photo body";
+  grid-template-rows: auto 1fr;
   gap: clamp(2rem, 4vw, 4.8rem);
   align-items: start;
 }
 
 .reader-layout--stage .reader-intro {
+  grid-area: intro;
   max-width: none;
   margin: 0;
   padding: 0;
@@ -1113,6 +1142,7 @@ body.notes-leaving .note-photo-stack {
 }
 
 .reader-layout--stage .reader-body {
+  grid-area: body;
   max-width: none;
   margin: 0;
   font-family: var(--serif);
@@ -1124,9 +1154,10 @@ body.notes-leaving .note-photo-stack {
 }
 
 .reader-layout--stage .reader-photo--inline {
-  width: 48%;
-  margin: 0.4rem 2.2rem 1.6rem 0;
-  float: left;
+  grid-area: photo;
+  width: 100%;
+  margin: 2rem 0 0;
+  float: none;
   transform: rotate(-1.4deg);
 }
 
@@ -1200,24 +1231,86 @@ body.notes-leaving .note-photo-stack {
 }
 
 .reader-layout--journey .reader-body {
+  display: grid;
   max-width: 44rem;
   margin-left: clamp(3rem, 12vw, 12rem);
+  grid-template-columns: minmax(0, 1fr) minmax(14rem, 0.55fr);
+  grid-auto-flow: row dense;
+  align-items: start;
+  column-gap: clamp(2rem, 4vw, 4.5rem);
+  row-gap: 1.6rem;
 }
 
 .reader-layout--journey .reader-body > p {
   max-width: none;
 }
 
+.reader-layout--journey .reader-body > p:nth-of-type(1),
+.reader-layout--journey .reader-pullquote {
+  grid-column: 1 / -1;
+}
+
 .reader-layout--journey .reader-photo--inline {
-  float: left;
-  width: calc(100% + clamp(3rem, 12vw, 12rem));
-  max-width: 43rem;
-  margin: 0.25rem 0 2.2rem calc(-1 * clamp(3rem, 12vw, 12rem));
+  grid-column: 2;
+  grid-row: span 2;
+  float: none;
+  width: 100%;
+  max-width: none;
+  margin: 0;
   transform: rotate(-0.8deg);
 }
 
 .reader-layout--journey .reader-photo--inline img {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 3 / 4;
+}
+
+.reader-layout--journey .reader-body > p:nth-of-type(3) {
+  grid-column: 1;
+  position: relative;
+  max-width: 24rem;
+  margin: 0.6rem 0 0;
+  padding: 2.25rem 0 0.25rem 1.55rem;
+  border-left: 1px solid
+    color-mix(in srgb, var(--reader-accent, var(--red)) 52%, transparent);
+  font-family: var(--serif);
+  font-size: clamp(1.22rem, 1.55vw, 1.48rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.78;
+}
+
+.reader-layout--journey .reader-body > p:nth-of-type(3)::before {
+  position: absolute;
+  top: 0;
+  left: 1.55rem;
+  color: var(--reader-accent, var(--red));
+  content: "AFTER THE WALK / 03";
+  font: 600 0.54rem/1 var(--mono);
+  letter-spacing: 0.13em;
+}
+
+.reader-layout--journey .reader-body > p:nth-of-type(3)::after {
+  position: absolute;
+  top: 0.15rem;
+  right: 0;
+  color: var(--reader-accent, var(--red));
+  content: "”";
+  font: 4.4rem/0.8 var(--serif);
+  opacity: 0.2;
+}
+
+.reader-layout--journey
+  .reader-body
+  > p:nth-of-type(3)
+  .reader-highlight {
+  background: none;
+  color: var(--reader-accent, var(--red));
+  font-style: italic;
+  font-weight: 650;
+}
+
+.reader-layout--journey .reader-body > p:nth-of-type(2) {
+  grid-column: 1;
 }
 
 .reader-layout--journey .reader-pullquote {
@@ -1308,6 +1401,61 @@ body.notes-leaving .note-photo-stack {
 .reader-layout--portrait .reader-paragraph--3 {
   grid-column: 1;
   grid-row: 3;
+  position: relative;
+  max-width: 42rem;
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+  padding: clamp(2.3rem, 3.5vw, 3rem) 1.8rem 1.5rem;
+  border-top: 1px solid
+    color-mix(in srgb, var(--reader-accent, var(--red)) 58%, transparent);
+  border-left: 2px solid
+    color-mix(in srgb, var(--reader-accent, var(--red)) 72%, transparent);
+  background:
+    linear-gradient(
+      112deg,
+      color-mix(in srgb, var(--reader-accent, var(--red)) 4%, transparent),
+      transparent 72%
+    );
+  color: var(--reader-ink, #39322c);
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 1.6vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  line-height: 1.8;
+}
+
+.reader-layout--portrait .reader-paragraph--3::before {
+  position: absolute;
+  top: 0.9rem;
+  left: 1.8rem;
+  color: var(--reader-accent, var(--red));
+  content: "WHAT I REALLY WANT / 04";
+  font: 600 0.55rem/1 var(--mono);
+  letter-spacing: 0.12em;
+}
+
+.reader-layout--portrait .reader-paragraph--3::after {
+  position: absolute;
+  right: 0.8rem;
+  bottom: -0.25rem;
+  color: var(--reader-accent, var(--red));
+  content: "04";
+  font: 5.5rem/0.8 var(--serif);
+  opacity: 0.1;
+}
+
+.reader-layout--portrait
+  .reader-paragraph--3
+  .reader-highlight {
+  background: none;
+  box-decoration-break: clone;
+  color: #76281f;
+  font-style: normal;
+  font-weight: 750;
+  text-decoration: underline;
+  text-decoration-color: #a33a2a;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+  -webkit-box-decoration-break: clone;
 }
 
 .reader-layout--portrait .reader-pullquote {
