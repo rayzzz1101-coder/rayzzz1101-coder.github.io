@@ -21,6 +21,34 @@ const sectionLinks = [
 const observedSections = sectionLinks
   .map((link) => document.querySelector(link.getAttribute("href")))
   .filter(Boolean);
+const mobileSectionTargets = new Map([
+  ["#impressions", document.querySelector("#impression-content")],
+  ["#letters", document.querySelector("#qa-content")],
+]);
+
+sectionLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    if (
+      !mobileQuery.matches ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+    const target = mobileSectionTargets.get(link.getAttribute("href"));
+    if (!target) {
+      return;
+    }
+    event.preventDefault();
+    history.replaceState(null, "", link.getAttribute("href"));
+    target.scrollIntoView({
+      behavior: reducedMotion.matches ? "auto" : "smooth",
+      block: "start",
+    });
+  });
+});
 
 const revealTargets = [
   ...document.querySelectorAll(

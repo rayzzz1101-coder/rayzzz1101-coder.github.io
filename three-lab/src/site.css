@@ -825,6 +825,7 @@ body.leaving-for-notes .letter-gallery {
   grid-template-columns: minmax(0, 1fr) minmax(13rem, 17rem);
   gap: clamp(1.5rem, 4vw, 4rem);
   align-items: stretch;
+  scroll-margin-top: calc(var(--site-header, 5.25rem) + 1rem);
 }
 
 .bubble-field {
@@ -1935,6 +1936,7 @@ body.leaving-for-notes .letter-gallery {
   grid-template-columns: minmax(0, 1fr) minmax(21rem, 0.72fr);
   gap: clamp(2rem, 7vw, 8rem);
   align-items: start;
+  scroll-margin-top: calc(var(--site-header, 5.25rem) + 1rem);
 }
 
 .reply-stack {
