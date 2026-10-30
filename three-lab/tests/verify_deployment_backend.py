@@ -13,11 +13,13 @@ CHROME_PATH = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--url", default="http://127.0.0.1:8787")
+    parser.add_argument("--api")
     token_source = parser.add_mutually_exclusive_group(required=True)
     token_source.add_argument("--token")
     token_source.add_argument("--token-file")
     parser.add_argument("--out", default="review-cloudflare-app")
     args = parser.parse_args()
+    api_base = (args.api or args.url).rstrip("/")
     token = (
         Path(args.token_file).read_text().strip()
         if args.token_file
@@ -58,10 +60,12 @@ def main():
         page.screenshot(path=output / "homepage-interview.png")
 
         impressions = page.evaluate(
-            "fetch('/api/v1/impressions').then(response => response.json())"
+            "url => fetch(url).then(response => response.json())",
+            f"{api_base}/api/v1/impressions",
         )
         questions = page.evaluate(
-            "fetch('/api/v1/questions').then(response => response.json())"
+            "url => fetch(url).then(response => response.json())",
+            f"{api_base}/api/v1/questions",
         )
         assert isinstance(impressions.get("items"), list)
         assert isinstance(questions.get("items"), list)
@@ -73,7 +77,7 @@ def main():
 
         admin = context.new_page()
         admin.on("pageerror", lambda error: errors.append(str(error)))
-        admin.goto(f"{args.url}/admin", wait_until="networkidle")
+        admin.goto(f"{args.url}/admin.html", wait_until="networkidle")
         admin.locator("#admin-token").fill(token)
         admin.locator("#login-form button").click()
         admin.wait_for_selector("#dashboard:not([hidden])")
