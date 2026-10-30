@@ -21,17 +21,16 @@ cd three-lab
 
 - 公开网站：<https://rayzzz1101-coder.github.io/>
 - 私密后台：<https://rayzzz1101-coder.github.io/admin.html>
-- 回退站点：<https://ray-question-box.ray-questionbox.workers.dev/>
+- Cloudflare 回退站点：<https://ray-question-box.ray-questionbox.workers.dev/>
 
-公开页面由 GitHub Pages 自动构建和托管；数据、鉴权与管理 API 继续由现有
-`ray-question-box` Cloudflare Worker 和 D1 数据库提供。部署入口和迁移位于
-项目根目录的 `deploy/`。
+公开页面由 GitHub Pages 自动构建和托管；数据、鉴权与管理 API 由腾讯云
+CloudBase HTTP 云函数和 PostgreSQL 提供。原来的 `ray-question-box`
+Cloudflare Worker 和 D1 数据库保留为回退入口。
 
 ```sh
 git push origin main
-env PATH=/Users/zzz/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin:/usr/bin:/bin \
-  /Users/zzz/Documents/ChatGPT/play/node_modules/.bin/wrangler \
-  deploy --config deploy/wrangler.toml
+ADMIN_TOKEN="$(cat /path/to/.admin-token)" \
+  tcb fn deploy --cwd deploy/cloudbase --all --force
 ```
 
 ## 独立印象工作页
@@ -89,12 +88,12 @@ env PATH=/Users/zzz/.cache/codex-runtimes/codex-primary-runtime/dependencies/nod
 
 ## API 适配
 
-本地 Vite 开发模式默认使用 Mock 数据。生产构建会自动调用部署域名的同域
-API，因此在 Cloudflare Worker 上无需配置额外地址。如需连接其他 API 域名，
-复制 `.env.example` 为 `.env.local`：
+本地 Vite 开发模式默认使用 Mock 数据。GitHub Actions 在构建时将
+`VITE_API_BASE_URL` 设置为 CloudBase HTTP 云函数地址。如需在本地连接其他
+API 域名，创建 `.env.local`：
 
 ```sh
-VITE_API_BASE_URL=https://api.example.com
+VITE_API_BASE_URL=https://evident-flamingo-d1ez1ke6e21c393-1521256935.ap-shanghai.app.tcloudbase.com/ray-api
 ```
 
 前端调用以下接口：

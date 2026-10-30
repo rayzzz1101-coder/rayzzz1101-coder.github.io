@@ -1,0 +1,25 @@
+{
+  "$schema": "https://static.cloudbase.net/cli/cloudbaserc.schema.json",
+  "version": "2.1",
+  "envId": "evident-flamingo-d1ez1ke6e21c393",
+  "region": "ap-shanghai",
+  "functionRoot": "functions",
+  "functions": [
+    {
+      "name": "ray-api",
+      "description": "Ray / Notes public and admin API",
+      "type": "HTTP",
+      "runtime": "Nodejs20.19",
+      "dir": "functions/ray-api",
+      "timeout": 15,
+      "memorySize": 256,
+      "buildStrategy": "zip",
+      "installDependency": true,
+      "public": true,
+      "gatewayPath": "/ray-api",
+      "envVariables": {
+        "ADMIN_TOKEN": "{{env.ADMIN_TOKEN}}"
+      }
+    }
+  ]
+}

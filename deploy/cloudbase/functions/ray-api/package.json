@@ -1,0 +1,13 @@
+{
+  "name": "ray-api",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "CloudBase API for Ray / Notes",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@cloudbase/node-sdk": "3.18.7"
+  }
+}

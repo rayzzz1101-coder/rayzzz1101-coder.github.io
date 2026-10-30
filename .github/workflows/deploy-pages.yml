@@ -36,7 +36,7 @@ jobs:
       - name: Build static site
         working-directory: three-lab
         env:
-          VITE_API_BASE_URL: https://ray-question-box.ray-questionbox.workers.dev
+          VITE_API_BASE_URL: https://evident-flamingo-d1ez1ke6e21c393-1521256935.ap-shanghai.app.tcloudbase.com/ray-api
         run: npm run build
 
       - name: Configure Pages

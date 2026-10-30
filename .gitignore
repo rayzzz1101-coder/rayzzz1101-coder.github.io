@@ -19,3 +19,5 @@ three-lab/review/
 three-lab/review-*/
 three-lab/.env
 three-lab/.env.local
+deploy/cloudbase/functions/*/node_modules/
+deploy/cloudbase/*.zip
