@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f2eee4">
+    <title>Wax Seal Lab</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23181713'/%3E%3Ccircle cx='32' cy='32' r='20' fill='%2376271e'/%3E%3Ccircle cx='32' cy='32' r='11' fill='none' stroke='%23efc4b5' stroke-width='2'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="/src/wax-seal-lab.css">
+    <script type="module" src="/src/wax-seal-lab.js"></script>
+  </head>
+  <body>
+    <main class="lab">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="返回信件实验">
+          <strong>WAX SEAL LAB</strong>
+          <span>STANDALONE OBJECT / REAL-TIME PBR</span>
+        </a>
+        <nav class="lab-nav" aria-label="实验页导航">
+          <a href="/envelope-material-lab.html">ENVELOPE LAB</a>
+          <span class="status"><i aria-hidden="true"></i>SEAL OBJECT / 01</span>
+        </nav>
+      </header>
+
+      <section class="workspace">
+        <div
+          class="stage-card wax-stage"
+          id="seal-stage"
+          role="button"
+          tabindex="0"
+          aria-label="按下或释放蜡封"
+          aria-pressed="false"
+        >
+          <div class="stage-copy" aria-hidden="true">
+            <p>SEALED OBJECT / STUDY 02</p>
+            <h1>把一枚蜡封，<br><em>单独拿出来。</em></h1>
+          </div>
+
+          <div class="canvas-host" id="seal-canvas"></div>
+
+          <div class="seal-registration" aria-hidden="true">
+            <span>ARCHIVE SEAL</span>
+            <i></i>
+            <span>01 / HONG KONG</span>
+          </div>
+
+          <div class="stage-hint" aria-hidden="true">
+            <span>DRAG / ROTATE</span><i></i><span>CLICK / PRESS</span>
+          </div>
+        </div>
+
+        <aside class="control-panel" aria-label="蜡封材质与几何参数">
+          <header class="panel-header">
+            <div>
+              <p>WAX OBJECT</p>
+              <h2>独立调参</h2>
+            </div>
+            <button id="reset-controls" type="button">RESET</button>
+          </header>
+
+          <p class="panel-intro">
+            蜡封已经脱离信封，成为独立模型。可以调整颜色、蜡面光泽、压印强度和轮廓。
+          </p>
+
+          <div class="variant-switcher" aria-label="蜡封版本">
+            <button class="is-active" type="button" data-variant="0">
+              <span>01</span>OXBLOOD
+            </button>
+            <button type="button" data-variant="1"><span>02</span>CLAY</button>
+            <button type="button" data-variant="2"><span>03</span>FOREST</button>
+          </div>
+
+          <div class="color-field">
+            <label for="wax-color">
+              <span>封蜡颜色</span>
+              <output id="wax-color-value" for="wax-color">#76271E</output>
+            </label>
+            <input id="wax-color" name="wax-color" type="color" value="#76271e">
+          </div>
+
+          <div class="slider-group">
+            <label for="roughness">
+              <span>粗糙度</span>
+              <output id="roughness-value" for="roughness">0.21</output>
+            </label>
+            <input
+              id="roughness"
+              name="roughness"
+              type="range"
+              min="0.12"
+              max="0.82"
+              step="0.01"
+              value="0.21"
+            >
+            <p>数值越高，蜡面越哑；较低时更接近刚压下的湿润蜡。</p>
+          </div>
+
+          <div class="slider-group">
+            <label for="clearcoat">
+              <span>清漆高光</span>
+              <output id="clearcoat-value" for="clearcoat">0.81</output>
+            </label>
+            <input
+              id="clearcoat"
+              name="clearcoat"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.81"
+            >
+            <p>控制压印边缘和蜡流隆起处的高光宽度。</p>
+          </div>
+
+          <div class="slider-group">
+            <label for="normal-strength">
+              <span>表面起伏</span>
+              <output id="normal-strength-value" for="normal-strength">0.98</output>
+            </label>
+            <input
+              id="normal-strength"
+              name="normal-strength"
+              type="range"
+              min="0"
+              max="2.2"
+              step="0.01"
+              value="0.98"
+            >
+            <p>强调指纹、微孔和蜡体表面的细小凹凸。</p>
+          </div>
+
+          <div class="slider-group">
+            <label for="emboss">
+              <span>压印深度</span>
+              <output id="emboss-value" for="emboss">0.0140</output>
+            </label>
+            <input
+              id="emboss"
+              name="emboss"
+              type="range"
+              min="0"
+              max="0.016"
+              step="0.0005"
+              value="0.014"
+            >
+            <p>改变中央编号、边框和月桂纹样的浮雕厚度。</p>
+          </div>
+
+          <div class="settings-readout">
+            <span>CURRENT OBJECT</span>
+            <code id="settings-output"></code>
+          </div>
+
+          <button class="export-button" id="export-seal" type="button">
+            <span>EXPORT STANDALONE GLB</span>
+            <span aria-hidden="true">↓</span>
+          </button>
+          <p class="export-status" id="export-status" role="status">
+            独立模型已准备好导出
+          </p>
+        </aside>
+      </section>
+
+      <section class="texture-strip" aria-label="蜡封贴图通道预览">
+        <header>
+          <p>WAX MAP SET</p>
+          <span>512 × 512 / PROCEDURAL SURFACE</span>
+        </header>
+        <div class="texture-grid">
+          <figure>
+            <img id="map-preview" alt="蜡封颜色贴图">
+            <figcaption>MAP / sRGB</figcaption>
+          </figure>
+          <figure>
+            <img id="roughness-preview" alt="蜡封粗糙度贴图">
+            <figcaption>ROUGHNESS / LINEAR</figcaption>
+          </figure>
+          <figure>
+            <img id="normal-preview" alt="蜡封法线贴图">
+            <figcaption>NORMAL / TANGENT</figcaption>
+          </figure>
+          <figure>
+            <img id="height-preview" alt="蜡封高度贴图">
+            <figcaption>HEIGHT / DISPLACEMENT</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <footer>
+        <span>WAX SEAL LAB</span>
+        <span>SEPARATED FROM THE LETTER / EXPORTABLE AS GLB</span>
+      </footer>
+    </main>
+  </body>
+</html>

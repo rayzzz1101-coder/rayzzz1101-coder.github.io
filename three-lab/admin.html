@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="theme-color" content="#f4f1e9">
+    <title>Ray / Notes — 后台</title>
+    <link rel="stylesheet" href="/src/admin.css">
+    <script type="module" src="/src/admin.js"></script>
+  </head>
+  <body>
+    <header class="admin-header">
+      <a href="/">RAY <i>/</i> NOTES</a>
+      <p>PRIVATE FIELD DESK</p>
+      <a href="/" class="back-link">返回主页 ↗</a>
+    </header>
+
+    <main class="admin-shell">
+      <section class="login-panel" id="login-panel">
+        <p class="eyebrow">PRIVATE / ADMIN</p>
+        <h1>回到书桌。</h1>
+        <p>管理密码只在本机浏览器会话中保存，不会写入页面代码。</p>
+        <form id="login-form">
+          <label for="admin-token">管理密码</label>
+          <input
+            id="admin-token"
+            type="password"
+            autocomplete="current-password"
+            required
+          >
+          <button type="submit">进入后台</button>
+        </form>
+        <p class="status" id="login-status" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="dashboard" id="dashboard" hidden>
+        <div class="dashboard-head">
+          <div>
+            <p class="eyebrow">FIELD DESK / REVIEW</p>
+            <h1>收件与发布。</h1>
+          </div>
+          <div class="dashboard-actions">
+            <button id="refresh-admin" type="button">刷新</button>
+            <button id="logout-admin" type="button">退出</button>
+          </div>
+        </div>
+
+        <p class="status" id="admin-status" role="status" aria-live="polite"></p>
+
+        <section class="admin-section" aria-labelledby="questions-heading">
+          <header>
+            <div>
+              <p class="eyebrow">QUESTIONS</p>
+              <h2 id="questions-heading">来信</h2>
+            </div>
+            <span id="question-total">00</span>
+          </header>
+          <div class="record-list" id="admin-questions"></div>
+        </section>
+
+        <section class="admin-section" aria-labelledby="interviews-heading">
+          <header>
+            <div>
+              <p class="eyebrow">INTERVIEWS</p>
+              <h2 id="interviews-heading">三步采访</h2>
+            </div>
+            <span id="interview-total">00</span>
+          </header>
+          <p class="section-note">
+            输入 1–6 个审核后的关键词并公开；主页泡泡会按提及次数自动聚合。
+          </p>
+          <div class="record-list" id="admin-interviews"></div>
+        </section>
+
+        <section class="admin-section" aria-labelledby="legacy-memories-heading">
+          <header>
+            <div>
+              <p class="eyebrow">LEGACY MEMORIES</p>
+              <h2 id="legacy-memories-heading">旧版记忆词</h2>
+            </div>
+            <span id="legacy-memory-total">00</span>
+          </header>
+          <p class="section-note">
+            这些是旧站保留下来的投稿；通过后会并入新版主页的印象数据。
+          </p>
+          <div class="record-list" id="admin-memories"></div>
+        </section>
+
+        <section class="admin-section" aria-labelledby="impressions-heading">
+          <header>
+            <div>
+              <p class="eyebrow">PUBLIC WORDS</p>
+              <h2 id="impressions-heading">当前公开印象</h2>
+            </div>
+          </header>
+          <div class="keyword-list" id="public-impressions"></div>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

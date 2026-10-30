@@ -1,0 +1,166 @@
+.impression-standalone {
+  overflow-y: auto;
+  background:
+    radial-gradient(circle at 76% 10%, rgba(255, 255, 255, 0.82), transparent 29rem),
+    var(--site-paper);
+}
+
+.impression-standalone::after {
+  z-index: 60;
+}
+
+.impression-lab-header {
+  position: sticky;
+  top: 0;
+  z-index: 70;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  min-height: 6.1rem;
+  padding: 0 var(--site-pad);
+  border-bottom: 1px solid var(--site-line);
+  background: rgba(244, 241, 233, 0.93);
+  backdrop-filter: blur(16px);
+}
+
+.lab-brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 1rem;
+  width: fit-content;
+}
+
+.lab-brand strong {
+  font: 400 clamp(2.15rem, 3.7vw, 3.75rem)/0.8 var(--serif);
+  letter-spacing: -0.075em;
+}
+
+.lab-brand strong i {
+  color: var(--site-red-deep);
+  font-size: 0.42em;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.lab-brand > span,
+.impression-lab-header > p {
+  color: var(--site-muted);
+  font: 0.53rem/1.5 var(--mono);
+  letter-spacing: 0.07em;
+}
+
+.lab-home {
+  display: inline-flex;
+  gap: 0.6rem;
+  align-items: center;
+  color: var(--site-red-deep);
+  font: 0.62rem/1.4 var(--mono);
+  letter-spacing: 0.06em;
+}
+
+.impression-lab-nav {
+  justify-self: end;
+  display: flex;
+  gap: 1.2rem;
+}
+
+.impression-lab-nav > a {
+  color: var(--site-red-deep);
+  font: 0.6rem/1.4 var(--mono);
+  letter-spacing: 0.06em;
+}
+
+.impression-lab-nav > a:hover,
+.impression-lab-nav > a:focus-visible {
+  color: var(--site-ink);
+}
+
+.lab-home:hover,
+.lab-home:focus-visible {
+  color: var(--site-ink);
+}
+
+.impression-standalone-section {
+  min-height: calc(100svh - 6.1rem);
+  padding-top: clamp(4rem, 7vw, 7rem);
+}
+
+.impression-lab-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  min-height: 12rem;
+  padding: 2.5rem var(--site-pad);
+  color: var(--site-muted);
+  background: var(--site-paper);
+  border-top: 1px solid var(--site-line);
+  font: 0.55rem/1.5 var(--mono);
+  letter-spacing: 0.07em;
+}
+
+.impression-lab-footer span:first-child {
+  color: var(--site-ink);
+  font: 400 2rem/1 var(--serif);
+  letter-spacing: -0.05em;
+}
+
+.impression-lab-footer a {
+  color: var(--site-red-deep);
+}
+
+@media (max-width: 820px) {
+  .impression-lab-header {
+    grid-template-columns: 1fr auto;
+    min-height: 5.4rem;
+  }
+
+  .impression-lab-header > p {
+    display: none;
+  }
+
+  .lab-brand > span {
+    display: none;
+  }
+
+  .impression-lab-nav {
+    gap: 0.7rem;
+  }
+
+  .impression-lab-nav > a:first-child {
+    display: none;
+  }
+
+  .impression-standalone-section {
+    padding-top: 3.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .impression-lab-header {
+    min-height: 4.9rem;
+    padding-inline: 1rem;
+  }
+
+  .lab-brand strong {
+    font-size: 2.1rem;
+  }
+
+  .impression-standalone .bubble-field {
+    min-height: 31rem;
+  }
+
+  .impression-standalone .paper-dialog {
+    padding: 3.7rem 1.2rem 1.5rem;
+  }
+
+  .impression-lab-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .impression-lab-footer span:nth-child(2) {
+    display: none;
+  }
+}

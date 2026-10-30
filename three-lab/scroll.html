@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#eee9df">
+    <meta
+      name="description"
+      content="Ray / Notes 的独立 Three.js 卷轴对象。"
+    >
+    <title>卷轴对象 · Ray / Notes</title>
+    <link rel="prefetch" href="/index.html">
+    <link rel="stylesheet" href="./src/scroll-page.css">
+    <script type="module" src="./src/scroll-page.js"></script>
+  </head>
+  <body>
+    <header class="scroll-lab-header">
+      <a href="/">RAY <i>/</i> NOTES</a>
+      <p>FIELD OBJECT / PARCHMENT STUDY</p>
+      <nav aria-label="实验页导航">
+        <a href="/interview.html">采访卷轴 ↗</a>
+        <a href="/">主页</a>
+      </nav>
+    </header>
+
+    <main class="scroll-stage" aria-labelledby="scroll-title">
+      <div class="scroll-stage-title">
+        <p>OBJECT / 02</p>
+        <h1 id="scroll-title">一张会卷起<br><em>的纸。</em></h1>
+        <span>PROCEDURAL PAPER / THREE.JS</span>
+      </div>
+
+      <div
+        class="scroll-object-host"
+        id="scroll-object"
+        aria-label="可展开和卷起的 Three.js 卷轴"
+      ></div>
+
+      <div class="scroll-stage-controls">
+        <p id="scroll-status" aria-live="polite">PAGE 01 / 03 · UNROLLED</p>
+        <div class="scroll-pagination" aria-label="卷轴页面">
+          <button class="is-active" type="button" data-page="0" aria-label="第 1 张">01</button>
+          <button type="button" data-page="1" aria-label="第 2 张">02</button>
+          <button type="button" data-page="2" aria-label="第 3 张">03</button>
+        </div>
+        <button id="toggle-scroll" type="button">
+          <span>下一张</span>
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+
+      <p class="scroll-stage-note">
+        PARCHMENT / TWO AXIS RODS / REAL-TIME LIGHTING
+      </p>
+    </main>
+  </body>
+</html>

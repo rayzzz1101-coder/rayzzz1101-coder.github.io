@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="zh-CN" data-mode="landing">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+      name="description"
+      content="Ray / Notes：一份关于日常、声音、旅行和成长，会继续写下去的公开手记。"
+    >
+    <meta name="theme-color" content="#f4f1e9">
+    <title>Ray / Notes — 公开手记</title>
+    <link rel="stylesheet" href="./src/styles.css">
+    <link rel="stylesheet" href="./src/site.css">
+    <link rel="prefetch" href="/notes.html">
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2312120f'/%3E%3Cpath d='M10 17h44v30H10zM10 17l22 16 22-16' fill='none' stroke='%23f4f1e9' stroke-width='2'/%3E%3C/svg%3E"
+    >
+    <script>
+      if (sessionStorage.getItem("ray:home-transition") === "return-from-right") {
+        document.documentElement.dataset.homeArrival = "from-right";
+      }
+    </script>
+    <style>
+      html {
+        background: #f4f1e9;
+      }
+      html[data-home-arrival="from-right"] .page-transition-cover {
+        display: block !important;
+        opacity: 1;
+        pointer-events: auto !important;
+        background: #f4f1e9 !important;
+      }
+      html[data-home-arrival="from-right"] .site-topbar,
+      html[data-home-arrival="from-right"] .hero-copy,
+      html[data-home-arrival="from-right"] .letter-meta,
+      html[data-home-arrival="from-right"] .drag-note,
+      html[data-home-arrival="from-right"] .page-footer,
+      html[data-home-arrival="from-right"] .side-note-entry,
+      html[data-home-arrival="from-right"] .envelope-fallback {
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/site.js"></script>
+  </head>
+  <body>
+    <div
+      class="page-transition-cover"
+      id="page-transition-cover"
+      style="position: fixed; inset: 0; z-index: 9000; display: none; background: #f4f1e9; pointer-events: none;"
+      aria-hidden="true"
+    ></div>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="topbar site-topbar">
+      <a class="brand" href="#cover" aria-label="Ray / Notes 回到封面">
+        <strong><span class="brand-ray">RAY</span><span class="brand-notes">/ NOTES</span></strong>
+        <span>PUBLIC FIELD NOTES</span>
+      </a>
+      <nav class="site-nav" aria-label="主页章节">
+        <a href="/notes.html">01 / 手记 ↗</a>
+        <a href="#impressions">02 / 印象</a>
+        <a href="#images">03 / 影像</a>
+        <a href="#letters">04 / 来信</a>
+      </nav>
+      <p class="status"><span aria-hidden="true"></span> WRITING IN PUBLIC</p>
+    </header>
+
+    <main id="main">
+      <section class="stage cover-stage" id="cover" aria-labelledby="hero-title">
+        <section
+          class="letter-gallery"
+          id="letter-gallery"
+          tabindex="0"
+          role="group"
+          aria-roledescription="interactive letter"
+          aria-label="Ray 的公开手记封面"
+          aria-describedby="gallery-help"
+        >
+          <div class="canvas-host" id="canvas-host"></div>
+
+          <div class="envelope-fallback" aria-hidden="true">
+            <span>AN INTERACTIVE OBJECT / NOT A LETTER</span>
+            <strong>RAY / NOTES</strong>
+            <i>Drag me around</i>
+          </div>
+
+          <div class="note-photo-stack" id="note-photo-stack" aria-live="polite">
+            <figure class="note-photo note-photo-primary">
+              <img id="note-photo-primary" alt="">
+              <figcaption>FIELD IMAGE / 01</figcaption>
+            </figure>
+            <figure class="note-photo note-photo-secondary">
+              <img id="note-photo-secondary" alt="">
+              <figcaption>FIELD IMAGE / 02</figcaption>
+            </figure>
+          </div>
+
+          <div class="hero-copy">
+            <p class="eyebrow">RAY / NOTES · HONG KONG</p>
+            <h1 id="hero-title">
+              <span>把日子写成</span>
+              <em>一封封信。</em>
+            </h1>
+            <p class="intro">
+              我是 Ray。这里收着日常里值得留下的片刻，也收着别人看我的方式。先玩玩这封信，再往下读。
+            </p>
+          </div>
+
+          <div class="letter-meta">
+            <p class="meta-label">DRAG / PLAY</p>
+            <p class="project-number" id="project-number">OBJECT / 01</p>
+            <h2 class="sr-only" id="project-title">可以拖动的封面信封</h2>
+            <p class="project-type sr-only" id="project-type">
+              INTERACTIVE ENVELOPE / NOT A LETTER
+            </p>
+            <p class="project-date" id="project-date">MOVE / RELEASE</p>
+            <div class="rule"></div>
+            <p class="technical-note">
+              POINTER DRAG<br>
+              INERTIA / GENTLE RETURN
+            </p>
+          </div>
+
+          <button class="read-letter" id="read-letter" type="button" disabled>
+            <span>阅读全文</span>
+            <span aria-hidden="true">↗</span>
+          </button>
+
+          <div class="drag-note">
+            <span id="key-sentence-en">Pick up the envelope. There is nothing to open.</span>
+            <i></i>
+          </div>
+
+          <a class="side-note-entry" id="enter-notes" href="/notes.html">
+            <span class="side-note-label">进入手记</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          <p class="sr-only" id="gallery-help">
+            封面信封可以拖动。放开后会带着惯性移动，并慢慢回到画面中央。这里不打开真实手记。
+          </p>
+          <p class="sr-only" id="live-status" aria-live="polite"></p>
+        </section>
+
+        <footer class="page-footer">
+          <span>AN OBJECT ON THE DESK / NOT THE LETTER ITSELF</span>
+          <span>DRAG — MOVE · RELEASE — RETURN</span>
+        </footer>
+      </section>
+
+      <section
+        class="folio-section impressions-section"
+        id="impressions"
+        aria-labelledby="impressions-title"
+      >
+        <div class="folio-margin">
+          <p class="section-index">02 / IN THEIR EYES</p>
+          <p class="vertical-note">A PORTRAIT MADE BY OTHERS.</p>
+        </div>
+        <div class="section-intro impression-intro">
+          <p class="section-kicker">WORDS PEOPLE LEFT BEHIND</p>
+          <h2 class="impression-art-title" id="impressions-title">
+            <span class="impression-title-line">记忆存档中</span>
+            <em class="impression-title-line impression-title-question">我 是什么样的？</em>
+          </h2>
+          <p class="impression-description">
+            <span class="impression-copy-line" style="--reveal-order: 0">每一枚泡泡都来自各位的</span>
+            <strong class="memory-archive impression-copy-line" style="--reveal-order: 1">记忆存档</strong>
+            <span class="impression-copy-line" style="--reveal-order: 2">越多人在同一枚词里认出我</span>
+            <span class="impression-copy-line" style="--reveal-order: 3">泡泡就越大</span>
+          </p>
+        </div>
+        <div class="bubble-field-wrap">
+          <div class="bubble-field bubble-embed-container">
+            <iframe
+              class="bubble-embed-frame"
+              src="/bubbles.html?embed=1"
+              title="可拖动、碰撞和选择的印象泡泡"
+              loading="eager"
+            ></iframe>
+          </div>
+          <aside class="bubble-note" aria-live="polite">
+            <p>SELECTED IMPRESSION</p>
+            <h3 id="bubble-selected-label">温柔</h3>
+            <p id="bubble-selected-count">24次提及</p>
+            <button id="open-all-impressions" type="button">
+              查看全部印象 <span aria-hidden="true">↗</span>
+            </button>
+          </aside>
+        </div>
+        <div class="interview-object-intro">
+          <div>
+            <p class="section-kicker">A THREE-MINUTE INTERVIEW</p>
+            <h3 id="interview-title">留下你眼中的我</h3>
+          </div>
+          <p>没有标准答案。可以匿名，也可以随时停下。</p>
+        </div>
+        <form class="interview-sheet interview-sheet--scroll" id="interview-form" aria-labelledby="interview-title">
+          <div class="interview-scroll-canvas" id="interview-scroll-canvas" aria-hidden="true"></div>
+          <div class="interview-scroll-paper">
+            <div class="interview-progress" aria-hidden="true">
+              <span class="is-current"></span><span></span><span></span>
+            </div>
+
+            <div class="interview-step-viewport">
+              <div class="interview-step is-current" data-step="0">
+                <label for="interview-answer-0">你是在什么时候第一次注意到我的？</label>
+                <textarea
+                  id="interview-answer-0"
+                  name="answer0"
+                  maxlength="280"
+                  placeholder="一个场景、一件小事，或者一种感觉…"
+                ></textarea>
+              </div>
+
+              <div class="interview-step" data-step="1">
+                <label for="interview-answer-1">哪件小事最能代表你眼中的我？</label>
+                <textarea
+                  id="interview-answer-1"
+                  name="answer1"
+                  maxlength="280"
+                  placeholder="不必写得很完整…"
+                ></textarea>
+              </div>
+
+              <div class="interview-step" data-step="2">
+                <label for="interview-answer-2">如果送我一句印象，会是什么？</label>
+                <textarea
+                  id="interview-answer-2"
+                  name="answer2"
+                  maxlength="280"
+                  placeholder="可以只是一个词…"
+                ></textarea>
+                <label class="consent-line">
+                  <input id="interview-consent" type="checkbox" required>
+                  <span>我知道原始回答不会公开，经审核的关键词可能出现在这页。</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="interview-actions">
+              <button class="plain-button" id="interview-back" type="button" disabled>上一问</button>
+              <span id="interview-hint" aria-live="polite">01 / 03</span>
+              <button class="ink-button" id="interview-next" type="button">下一问</button>
+            </div>
+            <p class="form-status" id="interview-status" aria-live="polite"></p>
+          </div>
+        </form>
+
+        <div class="interview-preview-complete" id="interview-preview-complete" hidden>
+          <strong>已经卷好了。</strong>
+        </div>
+      </section>
+
+      <section class="sky-section" id="images" aria-labelledby="images-title">
+        <header class="sky-header">
+          <div>
+            <p class="section-index">03 / FALLING IMAGES</p>
+            <h2 id="images-title">有些照片<br><em>从天上落下来。</em></h2>
+          </div>
+          <div class="sky-copy">
+            <p>它们没有固定顺序。接住一张，才能看到照片背后的日期、标签和那天发生的小事。</p>
+            <button class="outline-button" id="rain-again" type="button">
+              再落一阵 <span aria-hidden="true">↘</span>
+            </button>
+          </div>
+        </header>
+        <div class="photo-sky" id="photo-sky" aria-label="可接住的照片">
+          <p class="sky-instruction" id="sky-instruction">MOVE SLOWLY — TAP OR CLICK TO CATCH</p>
+        </div>
+        <ul class="sr-only" id="photo-accessible-list" aria-label="全部影像"></ul>
+      </section>
+
+      <section class="folio-section letters-section" id="letters" aria-labelledby="letters-title">
+        <div class="folio-margin">
+          <p class="section-index">04 / WRITE BACK</p>
+          <p class="vertical-note">A LETTER IS ALWAYS AN ANSWER TO SOMETHING.</p>
+        </div>
+        <div class="section-intro letters-intro">
+          <p class="section-kicker">THE INBOX HAS A SECOND LIFE</p>
+          <h2 id="letters-title">把问题<br><em>寄进来。</em></h2>
+          <p>
+            提问会先回到我的书桌。只有回答完成、并经确认适合公开的信，才会被夹回这页。
+          </p>
+        </div>
+        <div class="letters-layout">
+          <div class="reply-stack" id="reply-stack" aria-live="polite">
+            <p class="module-status">正在翻找已经回过的信…</p>
+          </div>
+          <form class="ask-form" id="ask-form">
+            <p class="ask-number">TO / RAY</p>
+            <h3>留下一个问题</h3>
+            <label for="question-body">你想问什么？</label>
+            <textarea id="question-body" name="question" maxlength="500" required></textarea>
+            <div class="form-row">
+              <label for="question-name">
+                <span>怎么称呼你</span>
+                <input id="question-name" name="displayName" maxlength="40" autocomplete="nickname">
+              </label>
+            </div>
+            <input
+              class="sr-only"
+              name="website"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+            >
+            <label class="consent-line">
+              <input id="question-consent" name="consentToPublish" type="checkbox">
+              <span>如果之后回答公开，我同意隐去联系方式后展示这个问题。</span>
+            </label>
+            <button class="ink-button" id="question-submit" type="submit">
+              折好，寄出 <span aria-hidden="true">↗</span>
+            </button>
+            <p class="form-status" id="question-status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>RAY / NOTES</p>
+      <p>一份仍在更新的公开手记 · 2026</p>
+      <a href="#cover">回到封面 ↑</a>
+    </footer>
+
+    <dialog class="paper-dialog impression-dialog" id="impression-dialog">
+      <button class="dialog-close" type="button" aria-label="关闭全部印象">CLOSE ×</button>
+      <p class="section-kicker">ALL APPROVED IMPRESSIONS</p>
+      <h2>全部印象</h2>
+      <p class="dialog-deck">只展示审核通过后的关键词与聚合次数。</p>
+      <ol id="all-impressions-list"></ol>
+    </dialog>
+
+    <dialog class="photo-dialog" id="photo-dialog">
+      <button class="dialog-close" type="button" aria-label="关闭照片">CLOSE ×</button>
+      <div class="photo-dialog-media">
+        <img id="photo-dialog-image" alt="">
+      </div>
+      <div class="photo-dialog-copy">
+        <p class="section-kicker" id="photo-dialog-date"></p>
+        <h2 id="photo-dialog-title"></h2>
+        <p id="photo-dialog-story"></p>
+        <ul id="photo-dialog-tags" aria-label="照片标签"></ul>
+        <button class="plain-button" id="photo-dialog-return" type="button">
+          放回天上 <span aria-hidden="true">↺</span>
+        </button>
+      </div>
+    </dialog>
+
+    <section
+      class="reader-overlay"
+      id="reader-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="reader-dialog-title"
+      hidden
+    >
+      <h2 class="sr-only" id="reader-dialog-title">信件全文</h2>
+      <p class="sr-only" id="reader-access-copy"></p>
+      <div class="reader-sheet" id="reader-sheet">
+        <header class="reader-toolbar">
+          <p>
+            <span>ARCHIVE READING ROOM</span>
+            <span id="reader-position">LETTER 01 / 06</span>
+          </p>
+          <button id="reader-close" type="button">合上信纸 <span aria-hidden="true">×</span></button>
+        </header>
+        <div class="reader-scroll" id="reader-scroll">
+          <div class="reader-paper-flow" id="reader-paper-flow" aria-hidden="true"></div>
+          <article class="reader-article" id="reader-article" aria-hidden="true">
+            <header class="reader-header">
+              <div>
+                <p>A LETTER FROM THE DESIGN ARCHIVE</p>
+                <time id="reader-date"></time>
+              </div>
+              <div class="reader-stamp" id="reader-stamp"></div>
+            </header>
+            <div class="reader-lead">
+              <div class="reader-lead-copy">
+                <p class="reader-kicker" id="reader-kicker"></p>
+                <h2 id="reader-title"></h2>
+                <p class="reader-subtitle" id="reader-subtitle"></p>
+                <p class="reader-type" id="reader-type"></p>
+              </div>
+              <div class="reader-photo-strip" id="reader-photo-strip"></div>
+            </div>
+            <div class="reader-story">
+              <p class="reader-intro" id="reader-intro"></p>
+              <div class="reader-body" id="reader-body"></div>
+            </div>
+            <footer class="reader-signature">
+              <p id="reader-signature"></p>
+              <p id="reader-footer">MAILED FROM HONG KONG / TO THE NEXT IDEA</p>
+            </footer>
+          </article>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zh-CN" data-mode="notes">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f1e9">
+    <title>六封信 · Ray / Notes</title>
+    <link rel="stylesheet" href="./src/styles.css">
+    <link rel="prefetch" href="/index.html">
+    <script>
+      if (sessionStorage.getItem("ray:notes-transition") === "from-right") {
+        document.documentElement.dataset.arrival = "from-right";
+      }
+    </script>
+    <style>
+      html {
+        background: #f4f1e9;
+      }
+      html[data-arrival="from-right"] .page-transition-cover {
+        display: block !important;
+        opacity: 1;
+        pointer-events: auto !important;
+        background: #f4f1e9 !important;
+      }
+      html[data-arrival="from-right"] .topbar,
+      html[data-arrival="from-right"] .hero-copy,
+      html[data-arrival="from-right"] .letter-meta,
+      html[data-arrival="from-right"] .drag-note,
+      html[data-arrival="from-right"] .notes-return,
+      html[data-arrival="from-right"] .page-footer {
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2312120f'/%3E%3Cpath d='M10 17h44v30H10zM10 17l22 16 22-16' fill='none' stroke='%23f4f1e9' stroke-width='2'/%3E%3C/svg%3E"
+    >
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <div
+      class="page-transition-cover"
+      id="page-transition-cover"
+      style="position: fixed; inset: 0; z-index: 9000; display: none; background: #f4f1e9; pointer-events: none;"
+      aria-hidden="true"
+    ></div>
+    <main class="stage">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="返回 Ray / Notes 首页">
+          <strong>RAY / NOTES</strong>
+          <span>BACK TO LANDING / SIX FIELD NOTES</span>
+        </a>
+        <div class="topbar-actions">
+          <p class="status"><span aria-hidden="true"></span> LETTER ARCHIVE / 01—06</p>
+        </div>
+      </header>
+
+      <section
+        class="letter-gallery"
+        id="letter-gallery"
+        tabindex="0"
+        role="group"
+        aria-roledescription="interactive letters"
+        aria-label="六封手记"
+        aria-describedby="gallery-help"
+      >
+        <div class="canvas-host" id="canvas-host"></div>
+
+        <button
+          class="mobile-letter-nav mobile-letter-nav--previous"
+          id="previous-letter"
+          type="button"
+          aria-label="上一封信"
+          aria-controls="letter-gallery"
+        >
+          <span aria-hidden="true">↑</span>
+        </button>
+
+        <button
+          class="mobile-letter-nav mobile-letter-nav--next"
+          id="next-letter"
+          type="button"
+          aria-label="下一封信"
+          aria-controls="letter-gallery"
+        >
+          <span aria-hidden="true">↓</span>
+        </button>
+
+        <div class="note-photo-stack" id="note-photo-stack" aria-live="polite">
+          <figure class="note-photo note-photo-primary">
+            <img id="note-photo-primary" alt="">
+            <figcaption>FIELD IMAGE / 01</figcaption>
+          </figure>
+          <figure class="note-photo note-photo-secondary">
+            <img id="note-photo-secondary" alt="">
+            <figcaption>FIELD IMAGE / 02</figcaption>
+          </figure>
+        </div>
+
+        <div class="hero-copy" aria-hidden="true">
+          <p class="eyebrow">日常 / 记录 / 记忆</p>
+          <h1>
+            <span>有些感受</span>
+            <em>值得被留下。</em>
+          </h1>
+        </div>
+
+        <div class="letter-meta">
+          <p class="meta-label">NOW READING</p>
+          <p class="project-number" id="project-number">01 / 06</p>
+          <h2 class="sr-only" id="project-title">写下片刻的意义</h2>
+          <p class="project-type sr-only" id="project-type">
+            FIELD NOTE / MEMORY &amp; WRITING
+          </p>
+          <p class="project-date" id="project-date">2026.10.18</p>
+          <div class="rule"></div>
+          <p class="technical-note">
+            PaperGeometry<br>
+            Fold pivot / GSAP timeline
+          </p>
+        </div>
+
+        <button class="read-letter" id="read-letter" type="button" disabled>
+          <span>阅读全文</span>
+          <svg
+            class="read-letter-arrow"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M5 19 19 5M8 5h11v11" />
+          </svg>
+        </button>
+
+        <div class="drag-note">
+          <span id="key-sentence-en">Hold the moment before it fades.</span>
+          <i></i>
+        </div>
+
+        <a class="notes-return" id="return-home" href="/">回到主页</a>
+
+        <p class="sr-only" id="gallery-help">
+          点击信封或按空格键打开信件。使用左右方向键切换项目，也可以拖动信封轻微旋转。
+        </p>
+        <p class="sr-only" id="live-status" aria-live="polite"></p>
+      </section>
+
+      <footer class="page-footer">
+        <span>A LETTER FOR YOUR NEXT IDEA</span>
+        <span>ARROWS — BROWSE · CLICK — OPEN · SPACE — TOGGLE</span>
+      </footer>
+    </main>
+
+    <section
+      class="reader-overlay"
+      id="reader-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="reader-dialog-title"
+      hidden
+    >
+      <h2 class="sr-only" id="reader-dialog-title">信件全文</h2>
+      <p class="sr-only" id="reader-access-copy"></p>
+      <div class="reader-sheet" id="reader-sheet">
+        <header class="reader-toolbar">
+          <p>
+            <span>ARCHIVE READING ROOM</span>
+            <span id="reader-position">LETTER 01 / 06</span>
+          </p>
+          <div class="reader-toolbar-actions">
+            <a class="reader-home-link" id="reader-return-home" href="/">回到主页</a>
+            <button id="reader-close" type="button">合上信纸 <span aria-hidden="true">×</span></button>
+          </div>
+        </header>
+        <div class="reader-scroll" id="reader-scroll">
+          <div class="reader-paper-flow" id="reader-paper-flow" aria-hidden="true"></div>
+          <article class="reader-article" id="reader-article" aria-hidden="true">
+            <header class="reader-header">
+              <div>
+                <p>A LETTER FROM THE DESIGN ARCHIVE</p>
+                <time id="reader-date"></time>
+              </div>
+              <div class="reader-stamp" id="reader-stamp"></div>
+            </header>
+            <div class="reader-lead">
+              <div class="reader-lead-copy">
+                <p class="reader-kicker" id="reader-kicker"></p>
+                <h2 id="reader-title"></h2>
+                <p class="reader-subtitle" id="reader-subtitle"></p>
+                <p class="reader-type" id="reader-type"></p>
+              </div>
+              <div class="reader-photo-strip" id="reader-photo-strip"></div>
+            </div>
+            <div class="reader-story">
+              <p class="reader-intro" id="reader-intro"></p>
+              <div class="reader-body" id="reader-body"></div>
+            </div>
+            <footer class="reader-signature">
+              <p id="reader-signature"></p>
+              <p id="reader-footer">MAILED FROM HONG KONG / TO THE NEXT IDEA</p>
+            </footer>
+          </article>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

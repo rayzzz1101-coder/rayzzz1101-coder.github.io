@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN" data-mode="impressions">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f1e9">
+    <meta
+      name="description"
+      content="Ray / Notes 印象采访独立工作页：审核后的关键词泡泡与三步印象采访。"
+    >
+    <title>印象实验 · Ray / Notes</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2312120f'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%23f4f1e9' stroke-width='2'/%3E%3Cpath d='M8 32h48M32 8v48' stroke='%23d44b36' stroke-width='2'/%3E%3C/svg%3E"
+    >
+    <link rel="stylesheet" href="./src/styles.css">
+    <link rel="stylesheet" href="./src/site.css">
+    <link rel="stylesheet" href="./src/impressions-page.css">
+    <script type="module" src="./src/impressions-page.js"></script>
+  </head>
+  <body class="impression-standalone">
+    <header class="impression-lab-header">
+      <a class="lab-brand" href="/" aria-label="Ray / Notes 主页">
+        <strong>RAY <i>/</i> NOTES</strong>
+        <span>IMPRESSION FIELD / STANDALONE</span>
+      </a>
+      <p>02 / IN THEIR EYES</p>
+      <nav class="impression-lab-nav" aria-label="工作页导航">
+        <a href="/bubbles.html">泡泡实验室 <span aria-hidden="true">↗</span></a>
+        <a class="lab-home" href="/">回到主页 <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main>
+      <section
+        class="folio-section impressions-section impression-standalone-section"
+        aria-labelledby="impressions-title"
+      >
+        <div class="folio-margin">
+          <p class="section-index">02 / IN THEIR EYES</p>
+          <p class="vertical-note">AN ISOLATED MODULE / READY TO REVISE.</p>
+        </div>
+
+        <div class="section-intro impression-intro">
+          <p class="section-kicker">WORDS PEOPLE LEFT BEHIND</p>
+          <h2 class="impression-art-title" id="impressions-title">
+            <span class="impression-title-line">记忆存档中</span>
+            <em class="impression-title-line impression-title-question">我 是什么样的？</em>
+          </h2>
+          <p class="impression-description">
+            <span class="impression-copy-line" style="--reveal-order: 0">每一枚泡泡都来自各位的</span>
+            <strong class="memory-archive impression-copy-line" style="--reveal-order: 1">记忆存档</strong>
+            <span class="impression-copy-line" style="--reveal-order: 2">越多人在同一枚词里认出我</span>
+            <span class="impression-copy-line" style="--reveal-order: 3">泡泡就越大</span>
+          </p>
+        </div>
+
+        <div class="bubble-field-wrap">
+          <div
+            class="bubble-field"
+            id="bubble-field"
+            role="list"
+            aria-label="经审核的访客印象关键词"
+          >
+            <p class="module-status">正在收拢散落的词…</p>
+          </div>
+          <aside class="bubble-note" aria-live="polite">
+            <p>SELECTED IMPRESSION</p>
+            <h3 id="bubble-selected-label">温柔</h3>
+            <p id="bubble-selected-count">来自 24 次审核后的提及</p>
+            <button id="open-all-impressions" type="button">
+              查看全部印象 <span aria-hidden="true">↗</span>
+            </button>
+          </aside>
+        </div>
+
+        <form
+          class="interview-sheet"
+          id="interview-form"
+          aria-labelledby="interview-title"
+        >
+          <div class="interview-head">
+            <div>
+              <p class="section-kicker">A THREE-MINUTE INTERVIEW</p>
+              <h3 id="interview-title">留下你眼中的我</h3>
+            </div>
+            <p>没有标准答案。可以匿名，也可以随时停下。</p>
+          </div>
+          <div class="interview-progress" aria-hidden="true">
+            <span class="is-current"></span><span></span><span></span>
+          </div>
+          <div class="interview-step is-current" data-step="0">
+            <label for="interview-answer-0">你是在什么时候第一次注意到我的？</label>
+            <textarea
+              id="interview-answer-0"
+              name="answer0"
+              maxlength="280"
+              placeholder="一个场景、一件小事，或者一种感觉…"
+            ></textarea>
+          </div>
+          <div class="interview-step" data-step="1">
+            <label for="interview-answer-1">哪件小事最能代表你眼中的我？</label>
+            <textarea
+              id="interview-answer-1"
+              name="answer1"
+              maxlength="280"
+              placeholder="不必写得很完整…"
+            ></textarea>
+          </div>
+          <div class="interview-step" data-step="2">
+            <label for="interview-answer-2">如果送我一句印象，会是什么？</label>
+            <textarea
+              id="interview-answer-2"
+              name="answer2"
+              maxlength="280"
+              placeholder="可以只是一个词…"
+            ></textarea>
+            <label class="consent-line">
+              <input id="interview-consent" type="checkbox" required>
+              <span>我知道原始回答不会公开，经审核的关键词可能出现在这页。</span>
+            </label>
+          </div>
+          <div class="interview-actions">
+            <button class="plain-button" id="interview-back" type="button" disabled>上一问</button>
+            <span id="interview-hint" aria-live="polite">01 / 03</span>
+            <button class="ink-button" id="interview-next" type="button">下一问</button>
+          </div>
+          <p class="form-status" id="interview-status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="impression-lab-footer">
+      <span>RAY / NOTES</span>
+      <span>IMPRESSION MODULE / ISOLATED FOR REVISION</span>
+      <a href="/">BACK HOME ↑</a>
+    </footer>
+
+    <dialog class="paper-dialog impression-dialog" id="impression-dialog">
+      <button class="dialog-close" type="button" aria-label="关闭全部印象">CLOSE ×</button>
+      <p class="section-kicker">ALL APPROVED IMPRESSIONS</p>
+      <h2>全部印象</h2>
+      <p class="dialog-deck">只展示审核通过后的关键词与聚合次数。</p>
+      <ol id="all-impressions-list"></ol>
+    </dialog>
+  </body>
+</html>

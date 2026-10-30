@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letter Lab — PBR Material Study</title>
+    <style>
+      :root {
+        --paper: #f2eee4;
+        --ink: #171612;
+        --muted: #716b61;
+        --rule: rgba(23, 22, 18, 0.18);
+        --red: #c74331;
+        --serif: "Bodoni 72", "Didot", "Songti SC", serif;
+        --sans: "Helvetica Neue", "PingFang SC", sans-serif;
+        --mono: "SFMono-Regular", "Menlo", monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 1600px;
+        height: 1100px;
+        margin: 0;
+        overflow: hidden;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.95), transparent 42%),
+          var(--paper);
+        font-family: var(--sans);
+      }
+
+      .sheet {
+        display: grid;
+        width: 100%;
+        height: 100%;
+        padding: 44px 52px 38px;
+        grid-template-rows: auto auto minmax(0, 1fr) auto;
+        gap: 26px;
+      }
+
+      header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .title-row {
+        display: flex;
+        align-items: baseline;
+        gap: 22px;
+      }
+
+      h1 {
+        margin: 0;
+        font: 600 31px/1 var(--sans);
+        letter-spacing: -0.055em;
+      }
+
+      header p,
+      .eyebrow,
+      .channel-label,
+      .spec,
+      .footer {
+        margin: 0;
+        font: 10px/1.45 var(--mono);
+        letter-spacing: 0.075em;
+        text-transform: uppercase;
+      }
+
+      header > p {
+        color: var(--red);
+      }
+
+      .intro {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        align-items: end;
+        gap: 60px;
+        padding-top: 2px;
+      }
+
+      .intro h2 {
+        margin: 6px 0 0;
+        max-width: 720px;
+        font: 400 48px/0.96 var(--serif);
+        letter-spacing: -0.045em;
+      }
+
+      .intro h2 em {
+        color: var(--red);
+        font-style: normal;
+      }
+
+      .intro-copy {
+        max-width: 540px;
+        margin-left: auto;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.9;
+      }
+
+      .material-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+        min-height: 0;
+      }
+
+      .card {
+        display: grid;
+        min-width: 0;
+        overflow: hidden;
+        border: 1px solid var(--rule);
+        background: rgba(255, 253, 247, 0.52);
+        grid-template-rows: 322px auto 1fr;
+      }
+
+      .preview {
+        position: relative;
+        display: grid;
+        overflow: hidden;
+        border-bottom: 1px solid var(--rule);
+        background:
+          radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.82), transparent 48%),
+          #e8e1d3;
+        place-items: center;
+        perspective: 900px;
+      }
+
+      .preview::before {
+        position: absolute;
+        inset: 0;
+        opacity: 0.18;
+        background-image:
+          radial-gradient(circle at 21% 31%, #33271d 0 0.55px, transparent 0.8px),
+          radial-gradient(circle at 71% 67%, #fff 0 0.7px, transparent 1px);
+        background-position: 0 0, 7px 9px;
+        background-size: 11px 11px, 15px 15px;
+        content: "";
+        pointer-events: none;
+      }
+
+      .preview::after {
+        position: absolute;
+        right: 22px;
+        bottom: 18px;
+        color: rgba(23, 22, 18, 0.45);
+        font: 9px/1 var(--mono);
+        letter-spacing: 0.09em;
+        content: "MATERIAL PREVIEW / 01";
+      }
+
+      .envelope {
+        position: relative;
+        width: 354px;
+        height: 222px;
+        border: 1px solid rgba(95, 68, 40, 0.28);
+        background:
+          repeating-linear-gradient(98deg, transparent 0 8px, rgba(80, 48, 24, 0.028) 8px 9px),
+          linear-gradient(145deg, #ead9bb 0%, #d8be96 53%, #c9a97b 100%);
+        box-shadow:
+          0 32px 38px rgba(74, 49, 28, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.54);
+        transform: rotateX(8deg) rotateY(-14deg) rotateZ(-2deg);
+      }
+
+      .envelope::before {
+        position: absolute;
+        inset: 0;
+        opacity: 0.4;
+        background:
+          linear-gradient(35deg, transparent 49.6%, rgba(115, 84, 52, 0.26) 50%, transparent 50.3%),
+          linear-gradient(-35deg, transparent 49.6%, rgba(115, 84, 52, 0.22) 50%, transparent 50.3%);
+        content: "";
+      }
+
+      .flap {
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        width: calc(100% + 2px);
+        height: 112px;
+        border-bottom: 1px solid rgba(99, 69, 39, 0.2);
+        background: linear-gradient(160deg, #f0e2ca, #ddc49e);
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+        filter: drop-shadow(0 8px 7px rgba(85, 57, 31, 0.1));
+      }
+
+      .seal {
+        position: relative;
+        display: grid;
+        width: 94px;
+        height: 94px;
+        margin: -47px auto 0;
+        border-radius: 47% 53% 52% 48% / 49% 46% 54% 51%;
+        color: #f8d8bd;
+        background:
+          radial-gradient(circle at 35% 30%, rgba(255, 238, 214, 0.36), transparent 28%),
+          radial-gradient(circle at 54% 55%, #cf5c47 0 42%, #a93428 69%, #7f241e 100%);
+        box-shadow:
+          0 7px 12px rgba(66, 19, 13, 0.34),
+          4px 5px 7px rgba(81, 25, 17, 0.28),
+          inset 2px 3px 5px rgba(255, 221, 192, 0.25),
+          inset -4px -5px 8px rgba(72, 10, 8, 0.35);
+        place-items: center;
+        transform: rotate(-5deg);
+      }
+
+      .seal::before {
+        position: absolute;
+        inset: 8px;
+        border: 3px double rgba(255, 216, 189, 0.28);
+        border-radius: 50%;
+        content: "";
+      }
+
+      .seal span {
+        position: relative;
+        font: 400 42px/1 var(--serif);
+        text-shadow:
+          1px 2px 1px rgba(95, 21, 14, 0.58),
+          -1px -1px 0 rgba(255, 222, 193, 0.28);
+      }
+
+      .letter {
+        position: relative;
+        width: 236px;
+        height: 288px;
+        padding: 33px 28px;
+        border: 1px solid rgba(106, 78, 47, 0.23);
+        background:
+          linear-gradient(rgba(105, 73, 39, 0.08) 1px, transparent 1px) 0 82px / 100% 25px,
+          repeating-linear-gradient(92deg, transparent 0 7px, rgba(84, 53, 27, 0.025) 7px 8px),
+          linear-gradient(145deg, #f5ebd8, #e1c9a6);
+        box-shadow:
+          0 30px 34px rgba(73, 47, 27, 0.18),
+          inset 0 1px 0 rgba(255, 255, 255, 0.64);
+        transform: rotateX(8deg) rotateY(11deg) rotateZ(1.5deg);
+      }
+
+      .letter::after {
+        position: absolute;
+        inset: 0;
+        opacity: 0.24;
+        background:
+          linear-gradient(18deg, transparent 48%, rgba(87, 54, 28, 0.13) 48.6%, transparent 49.2%),
+          linear-gradient(-27deg, transparent 49%, rgba(255, 255, 255, 0.22) 49.5%, transparent 50%);
+        content: "";
+      }
+
+      .letter-kicker {
+        color: var(--red);
+        font: 9px/1 var(--mono);
+        letter-spacing: 0.08em;
+      }
+
+      .letter h3 {
+        position: relative;
+        z-index: 1;
+        margin: 24px 0 18px;
+        font: 400 40px/0.84 var(--serif);
+        letter-spacing: -0.06em;
+      }
+
+      .letter-copy {
+        position: relative;
+        z-index: 1;
+        max-width: 174px;
+        font: 11px/1.75 Georgia, serif;
+      }
+
+      .wax-study {
+        position: relative;
+        display: grid;
+        width: 238px;
+        height: 238px;
+        border-radius: 47% 53% 49% 51% / 51% 45% 55% 49%;
+        background:
+          radial-gradient(circle at 34% 27%, rgba(255, 230, 209, 0.34), transparent 26%),
+          radial-gradient(circle at 54% 52%, #d25b46 0 35%, #b23a2a 61%, #80251c 100%);
+        box-shadow:
+          0 30px 34px rgba(72, 21, 14, 0.27),
+          inset 7px 8px 15px rgba(255, 221, 192, 0.18),
+          inset -11px -13px 20px rgba(63, 8, 6, 0.42);
+        place-items: center;
+        transform: rotateX(10deg) rotateY(-9deg);
+      }
+
+      .wax-study::before,
+      .wax-study::after {
+        position: absolute;
+        border-radius: 50%;
+        content: "";
+        pointer-events: none;
+      }
+
+      .wax-study::before {
+        inset: 33px;
+        border: 8px double rgba(255, 216, 188, 0.23);
+        box-shadow: 0 3px 6px rgba(85, 16, 11, 0.34);
+      }
+
+      .wax-study::after {
+        inset: 0;
+        opacity: 0.28;
+        background:
+          radial-gradient(circle at 65% 67%, #ffd9be 0 1px, transparent 2px),
+          radial-gradient(circle at 40% 67%, #61150f 0 1px, transparent 2px);
+        background-size: 19px 17px, 23px 21px;
+      }
+
+      .wax-study strong {
+        position: relative;
+        z-index: 1;
+        color: #f6d4ba;
+        font: 400 94px/1 Georgia, serif;
+        text-shadow:
+          5px 7px 4px rgba(78, 11, 8, 0.52),
+          -2px -2px 0 rgba(255, 223, 199, 0.24);
+      }
+
+      .card-copy {
+        display: grid;
+        padding: 18px 20px 16px;
+        grid-template-columns: 1fr auto;
+        gap: 10px 18px;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .card-copy h3 {
+        margin: 0;
+        font: 400 26px/1 var(--serif);
+        letter-spacing: -0.035em;
+      }
+
+      .card-copy p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.55;
+      }
+
+      .spec {
+        align-self: start;
+        color: var(--red);
+        text-align: right;
+      }
+
+      .channels {
+        display: grid;
+        padding: 14px 16px 16px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+        align-content: start;
+      }
+
+      figure {
+        min-width: 0;
+        margin: 0;
+      }
+
+      canvas {
+        display: block;
+        width: 100%;
+        height: 106px;
+        border: 1px solid rgba(23, 22, 18, 0.16);
+      }
+
+      figcaption {
+        margin-top: 7px;
+        color: var(--muted);
+        font: 8px/1.25 var(--mono);
+        letter-spacing: 0.04em;
+      }
+
+      .plan {
+        display: grid;
+        padding-top: 18px;
+        border-top: 1px solid var(--rule);
+        grid-template-columns: 0.72fr repeat(4, 1fr) 1.15fr;
+        gap: 22px;
+      }
+
+      .plan-title {
+        color: var(--red);
+      }
+
+      .step strong {
+        display: block;
+        margin-bottom: 6px;
+        font: 600 11px/1.2 var(--sans);
+      }
+
+      .step p,
+      .acceptance {
+        margin: 0;
+        color: var(--muted);
+        font-size: 10px;
+        line-height: 1.6;
+      }
+
+      .acceptance {
+        padding-left: 16px;
+        border-left: 1px solid var(--rule);
+      }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: -9px;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="sheet">
+      <header>
+        <div class="title-row">
+          <h1>LETTER LAB</h1>
+          <p>PBR MATERIAL STUDY / 03</p>
+        </div>
+        <p>MAP · ROUGHNESS · NORMAL · DISPLACEMENT</p>
+      </header>
+
+      <section class="intro">
+        <div>
+          <p class="eyebrow">PROPOSED MATERIAL PASS</p>
+          <h2>让纸张有纤维，<br><em>让蜡有自己的温度。</em></h2>
+        </div>
+        <p class="intro-copy">
+          颜色贴图负责“看起来是什么”，粗糙度负责高光如何散开，法线负责一束侧光下的微小凹凸，位移只负责真正会改变轮廓的褶皱和压痕。四层各司其职，避免把同一种噪点重复堆在每一张贴图上。
+        </p>
+      </section>
+
+      <section class="material-grid">
+        <article class="card">
+          <div class="preview">
+            <div class="envelope">
+              <div class="flap"></div>
+              <div class="seal"><span>01</span></div>
+            </div>
+          </div>
+          <div class="card-copy">
+            <div>
+              <h3>牛皮纸信封</h3>
+              <p>粗纤维、折痕与边缘磨损。侧光下应出现断续的哑光高光。</p>
+            </div>
+            <p class="spec">R .76–.94<br>N .42<br>D .003</p>
+          </div>
+          <div class="channels">
+            <figure><canvas data-kind="kraft" data-channel="map"></canvas><figcaption>MAP / SRGB</figcaption></figure>
+            <figure><canvas data-kind="kraft" data-channel="roughness"></canvas><figcaption>ROUGHNESS / G</figcaption></figure>
+            <figure><canvas data-kind="kraft" data-channel="normal"></canvas><figcaption>NORMAL / RGB</figcaption></figure>
+            <figure><canvas data-kind="kraft" data-channel="displacement"></canvas><figcaption>HEIGHT / R</figcaption></figure>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="preview">
+            <div class="letter">
+              <p class="letter-kicker">A LETTER FROM THE ARCHIVE</p>
+              <h3>INTELLIGENT<br>SPACE</h3>
+              <p class="letter-copy">
+                The most useful AI interface may be the one that shows enough context to make a decision, then knows when to stop.
+              </p>
+            </div>
+          </div>
+          <div class="card-copy">
+            <div>
+              <h3>内侧信纸</h3>
+              <p>保留文字与横线的干净表面，只加强纤维起伏、纸面波纹和折线。</p>
+            </div>
+            <p class="spec">R .82–.97<br>N .30<br>D .0018</p>
+          </div>
+          <div class="channels">
+            <figure><canvas data-kind="letter" data-channel="map"></canvas><figcaption>MAP / SRGB</figcaption></figure>
+            <figure><canvas data-kind="letter" data-channel="roughness"></canvas><figcaption>ROUGHNESS / G</figcaption></figure>
+            <figure><canvas data-kind="letter" data-channel="normal"></canvas><figcaption>NORMAL / RGB</figcaption></figure>
+            <figure><canvas data-kind="letter" data-channel="displacement"></canvas><figcaption>HEIGHT / R</figcaption></figure>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="preview">
+            <div class="wax-study"><strong>01</strong></div>
+          </div>
+          <div class="card-copy">
+            <div>
+              <h3>火漆印章</h3>
+              <p>蜡面并非镜面塑料。压印边缘更亮，微孔与指纹处更粗糙。</p>
+            </div>
+            <p class="spec">R .32–.68<br>N .72<br>D .004</p>
+          </div>
+          <div class="channels">
+            <figure><canvas data-kind="wax" data-channel="map"></canvas><figcaption>MAP / SRGB</figcaption></figure>
+            <figure><canvas data-kind="wax" data-channel="roughness"></canvas><figcaption>ROUGHNESS / G</figcaption></figure>
+            <figure><canvas data-kind="wax" data-channel="normal"></canvas><figcaption>NORMAL / RGB</figcaption></figure>
+            <figure><canvas data-kind="wax" data-channel="displacement"></canvas><figcaption>HEIGHT / R</figcaption></figure>
+          </div>
+        </article>
+      </section>
+
+      <section class="plan">
+        <p class="eyebrow plan-title">IMPLEMENTATION PLAN</p>
+        <div class="step">
+          <strong>01 / GENERATE</strong>
+          <p>共用纤维与折痕蒙版；高度图生成 normal 与 displacement，roughness 单独控制高光。</p>
+        </div>
+        <div class="step">
+          <strong>02 / BIND</strong>
+          <p>颜色贴图使用 sRGB；其余贴图保持线性颜色空间，避免亮度失真。</p>
+        </div>
+        <div class="step">
+          <strong>03 / GEOMETRY</strong>
+          <p>信纸提高网格密度；印章正面改为同心环细分，位移才有足够顶点。</p>
+        </div>
+        <div class="step">
+          <strong>04 / SEAL</strong>
+          <p>蜡封主体使用法线与粗糙度，正面压印使用小尺度位移。</p>
+        </div>
+        <div class="acceptance">
+          <strong>验收标准</strong>
+          <p>侧光下纤维可见但文字仍清晰；折痕有方向性；蜡面高光宽而柔；动画保持 60fps 目标。</p>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>PROCEDURAL TEXTURE SET · 1024²</span>
+        <span>DISPLACEMENT IS MICRO-SCALE ONLY</span>
+      </footer>
+    </main>
+
+    <script>
+      function seededRandom(seed) {
+        let value = seed >>> 0;
+        return () => {
+          value += 0x6d2b79f5;
+          let result = value;
+          result = Math.imul(result ^ (result >>> 15), result | 1);
+          result ^= result + Math.imul(result ^ (result >>> 7), result | 61);
+          return ((result ^ (result >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+
+      const presets = {
+        kraft: {
+          seed: 101,
+          base: [205, 174, 126],
+          rough: [206, 206, 206],
+          displacement: [128, 128, 128],
+          fibers: 135,
+          creases: 2,
+        },
+        letter: {
+          seed: 211,
+          base: [232, 216, 187],
+          rough: [222, 222, 222],
+          displacement: [128, 128, 128],
+          fibers: 105,
+          creases: 2,
+        },
+        wax: {
+          seed: 307,
+          base: [176, 58, 43],
+          rough: [116, 116, 116],
+          displacement: [130, 130, 130],
+          fibers: 36,
+          creases: 3,
+        },
+      };
+
+      function paintCanvas(canvas, kind, channel) {
+        const preset = presets[kind];
+        const context = canvas.getContext("2d");
+        const width = (canvas.width = 320);
+        const height = (canvas.height = 170);
+        const random = seededRandom(preset.seed + channel.length * 41);
+        const image = context.createImageData(width, height);
+        const pixels = image.data;
+        const base =
+          channel === "roughness"
+            ? preset.rough
+            : channel === "displacement"
+              ? preset.displacement
+              : channel === "normal"
+                ? [128, 128, 255]
+                : preset.base;
+
+        for (let y = 0; y < height; y += 1) {
+          for (let x = 0; x < width; x += 1) {
+            const index = (y * width + x) * 4;
+            const grain = (random() - 0.5) * (channel === "map" ? 13 : 28);
+            const wave =
+              Math.sin(x * 0.038 + y * 0.072) * 4 +
+              Math.sin(y * 0.16 - x * 0.021) * 2;
+
+            if (channel === "normal") {
+              pixels[index] = 128 + grain * 0.75 + wave;
+              pixels[index + 1] = 128 - grain * 0.42 + wave * 0.7;
+              pixels[index + 2] = 248;
+            } else {
+              pixels[index] = base[0] + grain + wave;
+              pixels[index + 1] = base[1] + grain * 0.92 + wave;
+              pixels[index + 2] = base[2] + grain * 0.78 + wave;
+            }
+            pixels[index + 3] = 255;
+          }
+        }
+        context.putImageData(image, 0, 0);
+
+        if (channel === "map") {
+          const gradient = context.createLinearGradient(0, 0, width, height);
+          gradient.addColorStop(0, "rgba(255,255,255,.16)");
+          gradient.addColorStop(0.52, "rgba(255,255,255,0)");
+          gradient.addColorStop(1, "rgba(62,35,18,.11)");
+          context.fillStyle = gradient;
+          context.fillRect(0, 0, width, height);
+        }
+
+        for (let index = 0; index < preset.fibers; index += 1) {
+          const x = random() * width;
+          const y = random() * height;
+          const length = 3 + random() * 32;
+          const lift = (random() - 0.5) * 7;
+          if (channel === "normal") {
+            context.strokeStyle = random() > 0.5
+              ? "rgba(154,118,255,.34)"
+              : "rgba(92,170,240,.27)";
+          } else if (channel === "roughness") {
+            context.strokeStyle = random() > 0.5
+              ? "rgba(255,255,255,.18)"
+              : "rgba(24,24,24,.16)";
+          } else if (channel === "displacement") {
+            context.strokeStyle = random() > 0.5
+              ? "rgba(246,246,246,.24)"
+              : "rgba(40,40,40,.18)";
+          } else {
+            context.strokeStyle = random() > 0.5
+              ? "rgba(255,248,225,.18)"
+              : "rgba(71,43,24,.12)";
+          }
+          context.lineWidth = 0.35 + random() * 1.1;
+          context.beginPath();
+          context.moveTo(x, y);
+          context.quadraticCurveTo(x + length * 0.48, y + lift, x + length, y - lift * 0.4);
+          context.stroke();
+        }
+
+        for (let index = 0; index < preset.creases; index += 1) {
+          const y = 34 + index * (height / Math.max(1, preset.creases + 1)) + random() * 18;
+          context.strokeStyle =
+            channel === "normal"
+              ? "rgba(200,145,255,.38)"
+              : channel === "roughness"
+                ? "rgba(245,245,245,.24)"
+                : channel === "displacement"
+                  ? "rgba(220,220,220,.42)"
+                  : "rgba(79,45,22,.12)";
+          context.lineWidth = channel === "map" ? 1.2 : 2.2;
+          context.beginPath();
+          context.moveTo(-10, y);
+          context.bezierCurveTo(width * 0.3, y - 13, width * 0.64, y + 15, width + 10, y - 3);
+          context.stroke();
+        }
+
+        if (kind === "wax") {
+          for (let index = 0; index < 26; index += 1) {
+            const x = random() * width;
+            const y = random() * height;
+            const radius = 0.4 + random() * 2.2;
+            context.strokeStyle =
+              channel === "normal"
+                ? "rgba(235,208,255,.32)"
+                : channel === "displacement"
+                  ? "rgba(230,230,230,.32)"
+                  : "rgba(255,220,200,.12)";
+            context.beginPath();
+            context.arc(x, y, radius, 0, Math.PI * 2);
+            context.stroke();
+          }
+        }
+      }
+
+      document.querySelectorAll("canvas[data-channel]").forEach((canvas) => {
+        paintCanvas(canvas, canvas.dataset.kind, canvas.dataset.channel);
+      });
+    </script>
+  </body>
+</html>

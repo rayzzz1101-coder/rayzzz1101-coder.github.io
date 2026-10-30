@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN" data-mode="bubbles">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f1e9">
+    <meta
+      name="description"
+      content="Ray / Notes 印象泡泡独立实验室。"
+    >
+    <title>泡泡实验室 · Ray / Notes</title>
+    <script>
+      if (new URLSearchParams(location.search).get("embed") === "1") {
+        document.documentElement.classList.add("bubble-embed-root");
+      }
+    </script>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2312120f'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23f4f1e9' stroke-width='2'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%23d44b36'/%3E%3C/svg%3E"
+    >
+    <link rel="stylesheet" href="./src/bubbles-page.css">
+    <script type="module" src="./src/bubbles-page.js"></script>
+  </head>
+  <body class="bubble-only-page">
+    <header class="bubble-lab-bar">
+      <a class="bubble-lab-brand" href="/">RAY <i>/</i> NOTES</a>
+      <p>BUBBLE FIELD / PHYSICS LAB</p>
+      <nav aria-label="实验室导航">
+        <a href="/#impressions">返回印象区</a>
+        <a href="/">主页</a>
+      </nav>
+    </header>
+
+    <main class="bubble-lab-workspace">
+      <section class="bubble-lab-stage" aria-label="泡泡画布">
+        <div class="bubble-canvas-host" id="bubble-canvas" aria-hidden="true"></div>
+        <div
+          class="bubble-field bubble-lab-field"
+          id="bubble-field"
+          role="list"
+          aria-label="可拖拽的印象泡泡"
+        >
+          <p class="module-status">正在收拢散落的词…</p>
+        </div>
+
+        <aside class="bubble-lab-readout" aria-live="polite">
+          <strong id="bubble-selected-label">温柔</strong>
+          <span id="bubble-selected-count">24次提及</span>
+        </aside>
+
+      </section>
+
+      <aside class="bubble-control-panel" aria-label="泡泡数据与排布参数">
+        <header class="panel-header">
+          <div>
+            <p>BUBBLE FIELD</p>
+            <h1>泡泡调参</h1>
+          </div>
+          <button id="reset-controls" type="button">RESET</button>
+        </header>
+
+        <p class="panel-intro">
+          泡泡已切换为 Three.js 实时材质。法线、清漆和粗糙度会直接改变每枚球体的表面反光。
+        </p>
+
+        <section class="control-section" aria-labelledby="surface-title">
+          <header>
+            <p id="surface-title">01 / SURFACE NORMAL</p>
+            <span>PBR</span>
+          </header>
+          <div class="slider-list">
+            <div class="slider-group">
+              <label for="bubble-roughness">
+                <span>粗糙度</span>
+                <output id="bubble-roughness-value" for="bubble-roughness">0.32</output>
+              </label>
+              <input
+                id="bubble-roughness"
+                name="bubble-roughness"
+                type="range"
+                min="0.08"
+                max="0.72"
+                step="0.01"
+                value="0.32"
+              >
+              <p>数值越高，薄膜表面越柔和；较低时会留下更清晰的左上高光。</p>
+            </div>
+
+            <div class="slider-group">
+              <label for="bubble-clearcoat">
+                <span>清漆高光</span>
+                <output id="bubble-clearcoat-value" for="bubble-clearcoat">0.74</output>
+              </label>
+              <input
+                id="bubble-clearcoat"
+                name="bubble-clearcoat"
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value="0.74"
+              >
+              <p>只保留少量薄膜高光，默认不会让泡泡变成镜面球。</p>
+            </div>
+
+            <div class="slider-group">
+              <label for="bubble-transmission">
+                <span>透光率</span>
+                <output id="bubble-transmission-value" for="bubble-transmission">0.95</output>
+              </label>
+              <input
+                id="bubble-transmission"
+                name="bubble-transmission"
+                type="range"
+                min="0.3"
+                max="1"
+                step="0.01"
+                value="0.95"
+              >
+              <p>数值越高，背景与颜色越能穿过泡泡薄膜。</p>
+            </div>
+
+            <div class="slider-group">
+              <label for="bubble-normal">
+                <span>法线强度</span>
+                <output id="bubble-normal-value" for="bubble-normal">0.00</output>
+              </label>
+              <input
+                id="bubble-normal"
+                name="bubble-normal"
+                type="range"
+                min="0"
+                max="2"
+                step="0.01"
+                value="0"
+              >
+              <p>强调薄膜表面的细小褶皱和微孔。</p>
+            </div>
+
+            <div class="slider-group">
+              <label for="bubble-emboss">
+                <span>表面起伏</span>
+                <output id="bubble-emboss-value" for="bubble-emboss">0.0000</output>
+              </label>
+              <input
+                id="bubble-emboss"
+                name="bubble-emboss"
+                type="range"
+                min="0"
+                max="0.04"
+                step="0.0005"
+                value="0"
+              >
+              <p>用高度贴图强化大面积的鼓胀、凹陷和表层纹理。</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="settings-readout">
+          <span>CURRENT SETTINGS</span>
+          <code id="settings-output"></code>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="bubble-lab-footer">
+      <span>DRAG — MOVE · RELEASE — COLLIDE &amp; GATHER</span>
+      <span>DATA / APPROVED KEYWORDS ONLY</span>
+    </footer>
+
+  </body>
+</html>

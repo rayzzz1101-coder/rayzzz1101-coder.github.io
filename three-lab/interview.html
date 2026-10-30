@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f1e9">
+    <meta
+      name="description"
+      content="Ray / Notes 三步印象采访独立设计页面。"
+    >
+    <title>印象采访实验室 · Ray / Notes</title>
+    <link rel="prefetch" href="/index.html">
+    <link rel="stylesheet" href="./src/interview-page.css">
+    <script type="module" src="./src/interview-page.js"></script>
+  </head>
+  <body>
+    <header class="interview-lab-header">
+      <a href="/">RAY <i>/</i> NOTES</a>
+      <p>INTERVIEW FORM / STANDALONE STUDY</p>
+      <nav aria-label="实验页导航">
+        <a href="/#impressions">返回主页印象区</a>
+        <a href="/bubbles.html">泡泡实验室 ↗</a>
+      </nav>
+    </header>
+
+    <main class="interview-lab">
+      <section class="interview-stage" aria-labelledby="page-title">
+        <div class="interview-stage-copy">
+          <p>03-MINUTE INTERVIEW / FIELD FORM</p>
+          <h1 id="page-title">把一句话，<em>留在纸上。</em></h1>
+          <p>
+            这是单独拆出的采访组件。三个问题、切题位移和最终卷轴收合都可以在这里独立调整。
+          </p>
+        </div>
+
+        <div class="interview-object-intro">
+          <div>
+            <p class="section-kicker">A THREE-MINUTE INTERVIEW</p>
+            <h2 id="interview-title">留下你眼中的我</h2>
+          </div>
+          <p>没有标准答案。可以匿名，也可以随时停下。</p>
+        </div>
+
+        <form class="interview-sheet" id="interview-form" aria-labelledby="interview-title">
+          <div class="interview-scroll-canvas" id="interview-scroll-canvas" aria-hidden="true"></div>
+          <div class="interview-scroll-paper">
+            <div class="interview-progress" aria-hidden="true">
+              <span class="is-current"></span><span></span><span></span>
+            </div>
+
+            <div class="interview-step-viewport">
+              <div class="interview-step is-current" data-step="0">
+                <label for="interview-answer-0">你是在什么时候第一次注意到我的？</label>
+                <textarea
+                  id="interview-answer-0"
+                  name="answer0"
+                  maxlength="280"
+                  placeholder="一个场景、一件小事，或者一种感觉…"
+                ></textarea>
+              </div>
+
+              <div class="interview-step" data-step="1">
+                <label for="interview-answer-1">哪件小事最能代表你眼中的我？</label>
+                <textarea
+                  id="interview-answer-1"
+                  name="answer1"
+                  maxlength="280"
+                  placeholder="不必写得很完整…"
+                ></textarea>
+              </div>
+
+              <div class="interview-step" data-step="2">
+                <label for="interview-answer-2">如果送我一句印象，会是什么？</label>
+                <textarea
+                  id="interview-answer-2"
+                  name="answer2"
+                  maxlength="280"
+                  placeholder="可以只是一个词…"
+                ></textarea>
+                <label class="consent-line">
+                  <input id="interview-consent" type="checkbox" required>
+                  <span>我知道原始回答不会公开，经审核的关键词可能出现在这页。</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="interview-actions">
+              <button class="plain-button" id="interview-back" type="button" disabled>上一问</button>
+              <span id="interview-hint" aria-live="polite">01 / 03</span>
+              <button class="ink-button" id="interview-next" type="button">下一问</button>
+            </div>
+            <p class="form-status" id="interview-status" aria-live="polite"></p>
+          </div>
+        </form>
+
+        <div class="interview-preview-complete" id="interview-preview-complete" hidden>
+          <span>FIELD FORM / 03</span>
+          <strong>已经卷好了。</strong>
+          <p>预览结束。你可以恢复表单继续调整版式与动效。</p>
+          <button id="restart-interview" type="button">重新预览 ↺</button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

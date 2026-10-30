@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f2eee4">
+    <title>Envelope Material Lab</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23181713'/%3E%3Cpath d='M10 17h44v30H10zM10 17l22 16 22-16' fill='none' stroke='%23f2eee4' stroke-width='2'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="/src/envelope-tuner.css">
+    <script type="module" src="/src/envelope-tuner.js"></script>
+  </head>
+  <body>
+    <main class="lab">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="返回信件实验">
+          <strong>ENVELOPE LAB</strong>
+          <span>MATERIAL TUNER / REAL-TIME PBR</span>
+        </a>
+        <nav class="lab-nav" aria-label="实验页导航">
+          <a href="/wax-seal-lab.html">WAX SEAL LAB</a>
+          <p class="status"><span aria-hidden="true"></span>LOCAL STUDY</p>
+        </nav>
+      </header>
+
+      <section class="workspace">
+        <div
+          class="stage-card"
+          id="stage-card"
+          role="button"
+          tabindex="0"
+          aria-label="打开或合上信封"
+          aria-expanded="false"
+        >
+          <div class="stage-copy" aria-hidden="true">
+            <p>KRAFT SURFACE / STUDY 01</p>
+            <h1>一张可以被<br><em>重新触摸的纸。</em></h1>
+          </div>
+
+          <div class="canvas-host" id="tuner-canvas"></div>
+
+          <div class="stage-hint" aria-hidden="true">
+            <span>CLICK / OPEN</span><i></i><span>DRAG / ROTATE</span>
+          </div>
+        </div>
+
+        <aside class="control-panel" aria-label="信封材质参数">
+          <header class="panel-header">
+            <div>
+              <p>ENVELOPE MATERIAL</p>
+              <h2>手工调参</h2>
+            </div>
+            <button id="reset-controls" type="button">RESET</button>
+          </header>
+
+          <p class="panel-intro">
+            这些滑杆只会修改这个新实验页。拖动信封观察高光与纤维在侧光下的变化。
+          </p>
+
+          <div class="slider-group">
+            <label for="roughness">
+              <span>粗糙度</span>
+              <output id="roughness-value" for="roughness">0.82</output>
+            </label>
+            <input
+              id="roughness"
+              name="roughness"
+              type="range"
+              min="0.18"
+              max="1"
+              step="0.01"
+              value="0.82"
+            >
+            <p>越低越湿润、高光越紧；越高越干、高光越宽。</p>
+          </div>
+
+          <div class="slider-group">
+            <label for="normal-strength">
+              <span>法线强度</span>
+              <output id="normal-strength-value" for="normal-strength">0.72</output>
+            </label>
+            <input
+              id="normal-strength"
+              name="normal-strength"
+              type="range"
+              min="0"
+              max="2.4"
+              step="0.01"
+              value="0.72"
+            >
+            <p>控制纤维和细小纸纹在光线下产生的凹凸方向。</p>
+          </div>
+
+          <div class="slider-group">
+            <label for="clearcoat">
+              <span>清漆感</span>
+              <output id="clearcoat-value" for="clearcoat">0.00</output>
+            </label>
+            <input
+              id="clearcoat"
+              name="clearcoat"
+              type="range"
+              min="0"
+              max="0.8"
+              step="0.01"
+              value="0"
+            >
+            <p>模拟信封表面非常薄的一层蜡感或抛光层。</p>
+          </div>
+
+          <div class="slider-group">
+            <label for="fiber-scale">
+              <span>纤维尺度</span>
+              <output id="fiber-scale-value" for="fiber-scale">1.45×</output>
+            </label>
+            <input
+              id="fiber-scale"
+              name="fiber-scale"
+              type="range"
+              min="0.65"
+              max="2.8"
+              step="0.01"
+              value="1.45"
+            >
+            <p>同步调整颜色、粗糙度和法线贴图的纹理密度。</p>
+          </div>
+
+          <div class="settings-readout">
+            <span>CURRENT VALUES</span>
+            <code id="settings-output"></code>
+          </div>
+        </aside>
+      </section>
+
+      <section class="texture-strip" aria-label="贴图通道预览">
+        <header>
+          <p>PROCEDURAL MAP SET</p>
+          <span>1024 × 1024 / SHARED SEED</span>
+        </header>
+        <div class="texture-grid">
+          <figure>
+            <img id="map-preview" alt="牛皮纸颜色贴图">
+            <figcaption>MAP / sRGB</figcaption>
+          </figure>
+          <figure>
+            <img id="roughness-preview" alt="信封粗糙度贴图">
+            <figcaption>ROUGHNESS / LINEAR</figcaption>
+          </figure>
+          <figure>
+            <img id="normal-preview" alt="信封法线贴图">
+            <figcaption>NORMAL / TANGENT</figcaption>
+          </figure>
+          <figure>
+            <img id="height-preview" alt="信封高度贴图">
+            <figcaption>HEIGHT / SOURCE</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <footer>
+        <span>ENVELOPE MATERIAL LAB</span>
+        <span>EXPERIMENTAL PAGE / ORIGINAL SITE UNCHANGED</span>
+      </footer>
+    </main>
+  </body>
+</html>
