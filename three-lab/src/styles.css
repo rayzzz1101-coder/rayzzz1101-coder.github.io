@@ -1813,6 +1813,11 @@ body.reader-open {
     display: none;
   }
 
+  .read-letter {
+    gap: 0.55rem;
+    font-size: 0.5rem;
+  }
+
   .reader-toolbar {
     min-height: 4rem;
     padding: 0.7rem 1rem;
