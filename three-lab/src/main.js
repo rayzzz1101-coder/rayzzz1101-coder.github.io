@@ -2979,6 +2979,9 @@ function resizeReaderPaperFlow() {
 
 function prepareReaderContent(project) {
   readerArticle.className = `reader-article reader-layout--${project.readerLayout}`;
+  readerArticle
+    .querySelectorAll(".reader-photo--inline")
+    .forEach((photo) => photo.remove());
   [
     readerDate,
     readerStamp,
