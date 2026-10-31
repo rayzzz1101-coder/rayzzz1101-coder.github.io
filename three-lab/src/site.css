@@ -1288,23 +1288,13 @@ body.leaving-for-notes .letter-gallery {
   color: #887d6e;
 }
 
-.consent-line {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.7rem;
+.consent-note {
   margin-top: 1.2rem;
+  padding-left: 1.55rem;
+  border-left: 1px solid color-mix(in srgb, var(--site-red) 52%, transparent);
   color: var(--note-muted);
   font-size: 0.68rem;
   line-height: 1.6;
-  cursor: pointer;
-}
-
-.consent-line input {
-  flex: 0 0 auto;
-  width: 0.95rem;
-  height: 0.95rem;
-  margin-top: 0.18rem;
-  accent-color: var(--site-red);
 }
 
 .interview-actions {
@@ -2047,7 +2037,7 @@ body.leaving-for-notes .letter-gallery {
   margin-top: 1.5rem;
 }
 
-.ask-form .consent-line {
+.ask-form .consent-note {
   margin-top: 1.3rem;
 }
 

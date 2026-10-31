@@ -82,7 +82,6 @@ def main():
         page.locator("#interview-answer-1").fill("会认真听完别人说话。")
         page.locator("#interview-next").click()
         page.locator("#interview-answer-2").fill("温柔、清楚")
-        page.locator("#interview-consent").check()
         page.locator("#interview-next").click()
         page.wait_for_selector("#interview-status.is-success")
 

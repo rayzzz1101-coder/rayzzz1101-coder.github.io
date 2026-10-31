@@ -7,6 +7,8 @@ import {
   disposeWaxSealModel,
 } from "./wax-seal-model.js";
 
+await document.fonts.ready;
+
 // 从这里开始修改。保存后，Vite 会自动刷新页面。
 const SETTINGS = {
   background: 0xf4f1e9,
@@ -773,6 +775,7 @@ function revealMobileLetterNav() {
   mobileLetterButtons.forEach((button) => {
     button.classList.remove("is-dissolving");
     button.classList.add("is-revealed");
+    button.removeAttribute("aria-hidden");
   });
 }
 
@@ -780,6 +783,7 @@ function dissolveMobileLetterNav() {
   mobileLetterButtons.forEach((button) => {
     button.classList.remove("is-revealed");
     button.classList.add("is-dissolving");
+    button.setAttribute("aria-hidden", "true");
   });
 }
 
@@ -1685,34 +1689,34 @@ function makeLetterTexture(
     context.globalAlpha = 1;
 
     context.fillStyle = project.ink;
-    context.font = "600 22px Arial";
+    context.font = '600 22px "Ray Sans", "Noto Sans SC", sans-serif';
     context.letterSpacing = "4px";
     paintLetterText("A LETTER FROM THE DESIGN ARCHIVE", 104, 110);
-    context.font = "400 19px Arial";
+    context.font = '400 19px "Ray Sans", "Noto Sans SC", sans-serif';
     paintLetterText(project.date, 104, 148);
 
     context.strokeStyle = project.accent;
     context.lineWidth = 2;
     context.strokeRect(740, 78, 116, 142);
     context.fillStyle = project.accent;
-    context.font = "400 64px Georgia";
+    context.font = '400 64px "Ray Serif", "Noto Serif SC", serif';
     paintLetterText(getProjectNumber(index).slice(0, 2), 765, 166);
-    context.font = "500 16px Arial";
+    context.font = '500 16px "Ray Sans", "Noto Sans SC", sans-serif';
     paintLetterText("ARCHIVE", 760, 194);
 
     context.fillStyle = project.ink;
-    context.font = "400 54px Georgia";
+    context.font = '400 54px "Ray Serif", "Noto Serif SC", serif';
     context.letterSpacing = "-2px";
     paintLetterText(project.title.split(" ")[0], 104, 300);
     paintLetterText(project.title.split(" ").slice(1).join(" "), 104, 352);
 
-    context.font = "600 18px Arial";
+    context.font = '600 18px "Ray Sans", "Noto Sans SC", sans-serif';
     context.letterSpacing = "3px";
     context.fillStyle = project.accent;
     paintLetterText(project.type, 104, 400);
 
     context.fillStyle = project.ink;
-    context.font = "400 25px Arial";
+    context.font = '400 25px "Ray Sans", "Noto Sans SC", sans-serif';
     context.letterSpacing = "0px";
     let currentY = 508;
     const wrapText = (text, x, y, maxWidth, lineHeight) => {
@@ -1752,9 +1756,9 @@ function makeLetterTexture(
     context.stroke();
     context.globalAlpha = 1;
     context.fillStyle = project.ink;
-    context.font = "400 25px Georgia";
+    context.font = '400 25px "Ray Serif", "Noto Serif SC", serif';
     paintLetterText(project.signature, 104, 1157);
-    context.font = "500 16px Arial";
+    context.font = '500 16px "Ray Sans", "Noto Sans SC", sans-serif';
     context.letterSpacing = "3px";
     paintLetterText("MAILED FROM HONG KONG / TO THE NEXT IDEA", 104, 1215);
   }
@@ -4045,6 +4049,7 @@ function beginReturnToHome() {
 
   isNotesTransitioning = true;
   document.body.classList.add("notes-leaving");
+  dissolveMobileLetterNav();
   liveStatus.textContent = "合上手记，正在回到主页。";
 
   const navigate = () => {

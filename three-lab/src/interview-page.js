@@ -16,7 +16,6 @@ const dots = [...document.querySelectorAll(".interview-progress span")];
 const back = document.querySelector("#interview-back");
 const next = document.querySelector("#interview-next");
 const hint = document.querySelector("#interview-hint");
-const consent = document.querySelector("#interview-consent");
 const status = document.querySelector("#interview-status");
 const completion = document.querySelector("#interview-preview-complete");
 const restart = document.querySelector("#restart-interview");
@@ -106,13 +105,6 @@ next.addEventListener("click", async () => {
     return;
   }
 
-  if (!consent.checked) {
-    status.textContent = "请先确认关键词的使用方式。";
-    status.classList.add("is-error");
-    consent.focus();
-    return;
-  }
-
   if (submitting) {
     return;
   }
@@ -173,7 +165,6 @@ restart.addEventListener("click", () => {
     answer.value = "";
     answer.disabled = false;
   });
-  consent.checked = false;
   status.textContent = "";
   status.className = "form-status";
   completion.hidden = true;

@@ -1,5 +1,7 @@
 import * as THREE from "three";
 
+await document.fonts.ready;
+
 function createParchmentTexture() {
   const canvas = document.createElement("canvas");
   canvas.width = 768 * 3;
@@ -78,11 +80,10 @@ function createPageLabelTexture(page) {
   context.textAlign = "center";
   context.textBaseline = "middle";
   context.fillStyle = "rgba(48,42,31,.78)";
-  context.font =
-    '300 410px "Bodoni 72", "Didot", "Songti SC", serif';
+  context.font = '300 410px "Ray Serif", "Noto Serif SC", serif';
   context.fillText(String(page + 1), canvas.width / 2, 360);
   context.fillStyle = "rgba(105,79,46,.53)";
-  context.font = '22px "SFMono-Regular", Menlo, monospace';
+  context.font = '22px "Ray Mono", "Noto Sans SC", monospace';
   context.fillText(
     `FIELD NOTE / 0${page + 1}`,
     canvas.width / 2,

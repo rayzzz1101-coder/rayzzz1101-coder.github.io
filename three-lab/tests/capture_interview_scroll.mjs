@@ -51,7 +51,6 @@ async function capture(viewport, prefix) {
 
   await page.locator("#interview-next").click();
   await page.waitForTimeout(1100);
-  await page.locator("#interview-consent").check();
   await page.locator("#interview-next").click();
   await page.waitForTimeout(880);
   await page.screenshot({

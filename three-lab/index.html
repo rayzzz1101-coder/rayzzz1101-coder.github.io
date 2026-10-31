@@ -9,6 +9,7 @@
     >
     <meta name="theme-color" content="#f4f1e9">
     <title>Ray / Notes — 公开手记</title>
+    <link rel="stylesheet" href="./src/fonts.css">
     <link rel="stylesheet" href="./src/styles.css">
     <link rel="stylesheet" href="./src/site.css">
     <link rel="prefetch" href="/notes.html">
@@ -234,10 +235,7 @@
                   maxlength="280"
                   placeholder="可以只是一个词…"
                 ></textarea>
-                <label class="consent-line">
-                  <input id="interview-consent" type="checkbox" required>
-                  <span>我知道原始回答不会公开，经审核的关键词可能出现在这页。</span>
-                </label>
+                <p class="consent-note">原始回答不会公开；提交后，经审核的关键词可能出现在这页。</p>
               </div>
             </div>
 
@@ -305,10 +303,7 @@
               autocomplete="off"
               aria-hidden="true"
             >
-            <label class="consent-line">
-              <input id="question-consent" name="consentToPublish" type="checkbox">
-              <span>如果之后回答公开，我同意隐去联系方式后展示这个问题。</span>
-            </label>
+            <p class="consent-note">提交后会先进入审核；回答公开前不会展示联系方式。</p>
             <button class="ink-button" id="question-submit" type="submit">
               折好，寄出 <span aria-hidden="true">↗</span>
             </button>

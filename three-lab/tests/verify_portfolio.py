@@ -184,7 +184,6 @@ def main():
         page.locator("#interview-next").click()
         page.wait_for_selector('.interview-step[data-step="2"].is-current')
         page.locator("#interview-answer-2").fill("温柔而清楚")
-        page.locator("#interview-consent").check()
         page.locator("#interview-next").click()
         page.wait_for_selector("#interview-status.is-success")
         assert "已经寄出" in page.locator("#interview-status").inner_text()
@@ -294,7 +293,6 @@ def main():
         page.locator("#question-body").fill("你会在什么时候决定停下一个项目？")
         page.locator("#question-name").fill("测试读者")
         assert page.locator("#question-contact").count() == 0
-        page.locator("#question-consent").check()
         page.locator("#question-submit").click()
         page.wait_for_selector("#question-status.is-success")
         assert "不会公开" in page.locator("#question-status").inner_text()

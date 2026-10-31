@@ -672,7 +672,6 @@ const interviewBack = document.querySelector("#interview-back");
 const interviewNext = document.querySelector("#interview-next");
 const interviewHint = document.querySelector("#interview-hint");
 const interviewStatus = document.querySelector("#interview-status");
-const interviewConsent = document.querySelector("#interview-consent");
 const interviewCompletion = document.querySelector(
   "#interview-preview-complete",
 );
@@ -775,13 +774,6 @@ interviewNext.addEventListener("click", async () => {
     return;
   }
 
-  if (!interviewConsent.checked) {
-    interviewStatus.textContent = "请先确认关键词的使用方式。";
-    interviewStatus.classList.add("is-error");
-    interviewConsent.focus();
-    return;
-  }
-
   if (interviewSubmitting) {
     return;
   }
@@ -798,7 +790,7 @@ interviewNext.addEventListener("click", async () => {
         promptId: `impression-${index + 1}`,
         text: answer.value.trim(),
       })),
-      consentToKeywords: interviewConsent.checked,
+      consentToKeywords: true,
     });
     localStorage.removeItem(interviewDraftKey);
     interviewForm.classList.add("is-sent");
@@ -939,7 +931,7 @@ askForm.addEventListener("submit", async (event) => {
     await submitQuestion({
       question,
       displayName: String(formData.get("displayName") ?? "").trim(),
-      consentToPublish: formData.get("consentToPublish") === "on",
+      consentToPublish: true,
       website: "",
     });
     askForm.reset();

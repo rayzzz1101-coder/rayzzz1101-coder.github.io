@@ -396,7 +396,6 @@ const backButton = document.querySelector("#interview-back");
 const nextButton = document.querySelector("#interview-next");
 const hint = document.querySelector("#interview-hint");
 const status = document.querySelector("#interview-status");
-const consent = document.querySelector("#interview-consent");
 let step = 0;
 let submitting = false;
 
@@ -459,12 +458,6 @@ nextButton.addEventListener("click", async () => {
   if (step < 2) {
     step += 1;
     renderStep();
-    return;
-  }
-  if (!consent.checked) {
-    status.textContent = "请先确认关键词的使用方式。";
-    status.className = "form-status is-error";
-    consent.focus();
     return;
   }
   if (submitting) {

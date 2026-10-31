@@ -6,13 +6,13 @@
   --bubble-red-deep: #8b2e20;
   --bubble-line: rgba(18, 18, 15, 0.2);
   --bubble-pad: clamp(1.15rem, 3.6vw, 4.2rem);
-  --bubble-serif: "Bodoni 72", "Didot", "Songti SC", "STSong", "Times New Roman", serif;
-  --bubble-sans: "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", sans-serif;
-  --bubble-mono: "SFMono-Regular", "Menlo", "Monaco", monospace;
+  --bubble-serif: "Ray Serif", "Noto Serif SC", serif;
+  --bubble-sans: "Ray Sans", "Noto Sans SC", sans-serif;
+  --bubble-mono: "Ray Mono", "Noto Sans SC", monospace;
   color: var(--bubble-ink);
   background: var(--bubble-paper);
   font-family: var(--bubble-sans);
-  font-synthesis: none;
+  font-synthesis: weight style;
   text-rendering: optimizeLegibility;
 }
 
@@ -267,8 +267,7 @@ a {
   border-radius: 50%;
   color: var(--bubble-ink);
   background: transparent;
-  font: 700 clamp(0.64rem, 1.05vw, 0.92rem)/1.05
-    "Arial Rounded MT Bold", "Yuanti SC", "PingFang SC", var(--bubble-sans);
+  font: 700 clamp(0.64rem, 1.05vw, 0.92rem)/1.05 var(--bubble-sans);
   text-align: center;
   letter-spacing: 0.015em;
   text-shadow:

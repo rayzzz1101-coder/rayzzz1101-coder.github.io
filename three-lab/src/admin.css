@@ -6,9 +6,9 @@
   --muted: #71695f;
   --red: #c7442f;
   --line: rgba(21, 21, 18, 0.2);
-  --serif: "Bodoni 72", "Didot", "Songti SC", "Times New Roman", serif;
-  --sans: "Helvetica Neue", "PingFang SC", sans-serif;
-  --mono: "SFMono-Regular", Menlo, monospace;
+  --serif: "Ray Serif", "Noto Serif SC", serif;
+  --sans: "Ray Sans", "Noto Sans SC", sans-serif;
+  --mono: "Ray Mono", "Noto Sans SC", monospace;
   color: var(--ink);
   background: var(--paper);
   font-family: var(--sans);

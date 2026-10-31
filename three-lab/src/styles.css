@@ -4,13 +4,13 @@
   --muted: #767168;
   --red: #d44b36;
   --line: rgba(18, 18, 15, 0.24);
-  --serif: "Bodoni 72", "Didot", "Songti SC", "STSong", "Times New Roman", serif;
-  --sans: "Helvetica Neue", "Arial", "PingFang SC", sans-serif;
-  --mono: "SFMono-Regular", "Menlo", "Monaco", monospace;
+  --serif: "Ray Serif", "Noto Serif SC", serif;
+  --sans: "Ray Sans", "Noto Sans SC", sans-serif;
+  --mono: "Ray Mono", "Noto Sans SC", monospace;
   color: var(--ink);
   background: var(--paper);
   font-family: var(--sans);
-  font-synthesis: none;
+  font-synthesis: weight style;
   text-rendering: optimizeLegibility;
 }
 
@@ -484,7 +484,7 @@ body.reader-open .mobile-letter-nav {
   border: 0;
   color: var(--ink);
   background: transparent;
-  font-family: "Songti SC", "STSong", "Noto Serif CJK SC", var(--serif);
+  font-family: var(--serif);
   font-size: clamp(1rem, 1.25vw, 1.22rem);
   font-weight: 600;
   letter-spacing: 0.09em;
@@ -700,6 +700,7 @@ body.notes-leaving .letter-meta,
 body.notes-leaving .drag-note,
 body.notes-leaving .page-footer,
 body.notes-leaving .notes-return,
+body.notes-leaving .mobile-letter-nav,
 body.notes-leaving .note-photo-stack,
 body.notes-leaving .read-letter {
   opacity: 0 !important;

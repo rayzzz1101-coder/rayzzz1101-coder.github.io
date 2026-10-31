@@ -9,13 +9,13 @@
   --note-ink: #302c23;
   --note-muted: #756b5d;
   --note-line: rgba(75, 62, 43, 0.2);
-  --serif: "Bodoni 72", "Didot", "Songti SC", "STSong", "Times New Roman", serif;
-  --sans: "Helvetica Neue", "Arial", "PingFang SC", sans-serif;
-  --mono: "SFMono-Regular", "Menlo", "Monaco", monospace;
+  --serif: "Ray Serif", "Noto Serif SC", serif;
+  --sans: "Ray Sans", "Noto Sans SC", sans-serif;
+  --mono: "Ray Mono", "Noto Sans SC", monospace;
   color: var(--ink);
   background: var(--paper);
   font-family: var(--sans);
-  font-synthesis: none;
+  font-synthesis: weight style;
   text-rendering: optimizeLegibility;
 }
 
@@ -348,23 +348,13 @@ button {
   border-color: var(--accent);
 }
 
-.consent-line {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.7rem;
+.consent-note {
   margin-top: 1.2rem;
+  padding-left: 1.55rem;
+  border-left: 1px solid color-mix(in srgb, var(--accent) 52%, transparent);
   color: var(--note-muted);
   font-size: 0.68rem;
   line-height: 1.6;
-  cursor: pointer;
-}
-
-.consent-line input {
-  flex: 0 0 auto;
-  width: 0.95rem;
-  height: 0.95rem;
-  margin-top: 0.18rem;
-  accent-color: var(--accent);
 }
 
 .interview-actions {
