@@ -1029,15 +1029,40 @@ let skyVisible = false;
 let rainQueue = [];
 let activeRainCards = [];
 let rainSpawnTimer = 0;
-let rainGeneration = 0;
-let rainCycle = 0;
+let lastRainedPhotoId = null;
+const rainSpeedMultiplier = 2;
+
+function makeRandomPhotoQueue() {
+  const queue = PHOTOS.slice();
+  for (let index = queue.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [queue[index], queue[randomIndex]] = [queue[randomIndex], queue[index]];
+  }
+  if (
+    queue.length > 1 &&
+    queue[0].id === lastRainedPhotoId
+  ) {
+    const swapIndex = 1 + Math.floor(Math.random() * (queue.length - 1));
+    [queue[0], queue[swapIndex]] = [queue[swapIndex], queue[0]];
+  }
+  return queue;
+}
+
+function getRainFallSpeed(progress) {
+  const clamped = Math.max(0, Math.min(1, progress));
+  if (clamped < 0.48) {
+    const entryProgress = clamped / 0.48;
+    return 1.48 - 0.78 * Math.sin(entryProgress * Math.PI * 0.5);
+  }
+  const exitProgress = (clamped - 0.48) / 0.52;
+  return 0.7 + 0.72 * exitProgress * exitProgress;
+}
 
 function removeRainCards() {
   window.clearTimeout(rainSpawnTimer);
   document.querySelectorAll(".falling-photo").forEach((card) => card.remove());
   activeRainCards = [];
   rainQueue = [];
-  rainGeneration += 1;
 }
 
 function createRainCard(photo) {
@@ -1045,7 +1070,7 @@ function createRainCard(photo) {
   card.type = "button";
   card.dataset.photoId = photo.id;
   card.setAttribute("aria-label", `接住照片：${photo.title}`);
-  const photoShape = hashString(photo.id) % 3;
+  const photoShape = Math.floor(Math.random() * 3);
   card.dataset.shape =
     photoShape === 0 ? "square" : photoShape === 1 ? "wide" : "portrait";
 
@@ -1106,6 +1131,7 @@ function createRainCard(photo) {
     item.dragging = true;
     item.dragged = false;
     item.suppressClick = false;
+    item.slot = null;
     item.pointerOffsetX = event.clientX - bounds.left - item.x;
     item.pointerOffsetY = event.clientY - bounds.top - item.y;
     card.classList.add("is-dragging");
@@ -1115,19 +1141,17 @@ function createRainCard(photo) {
       return;
     }
     const bounds = photoSky.getBoundingClientRect();
-    const laneLeft = item.slot * (bounds.width / 4);
-    const laneRight = laneLeft + bounds.width / 4;
     const nextX = Math.max(
-      laneLeft + 8,
+      8,
       Math.min(
-        laneRight - item.width - 8,
+        bounds.width - item.width - 8,
         event.clientX - bounds.left - item.pointerOffsetX,
       ),
     );
     const nextY = Math.max(
-      -item.height,
+      8,
       Math.min(
-        bounds.height - item.height,
+        bounds.height - item.height - 8,
         event.clientY - bounds.top - item.pointerOffsetY,
       ),
     );
@@ -1217,7 +1241,12 @@ function animateRain(now) {
     }
 
     item.time += delta;
-    item.y += item.speed * delta;
+    const fallProgress = (item.y + item.height) / (skyHeight + item.height);
+    item.y +=
+      item.speed *
+      rainSpeedMultiplier *
+      getRainFallSpeed(fallProgress) *
+      delta;
     item.x += Math.sin(item.time * 0.8) * item.drift * delta;
     item.rotation += item.rotationSpeed * delta;
     item.card.style.transform =
@@ -1240,16 +1269,7 @@ function spawnNextPhoto() {
   }
 
   if (rainQueue.length === 0) {
-    rainCycle += 1;
-    rainQueue = PHOTOS.slice().sort(
-      (first, second) =>
-        hashString(
-          `${first.id}-${rainGeneration}-${rainCycle}`,
-        ) -
-        hashString(
-          `${second.id}-${rainGeneration}-${rainCycle}`,
-        ),
-    );
+    rainQueue = makeRandomPhotoQueue();
   }
 
   const concurrentLimit = 4;
@@ -1261,15 +1281,18 @@ function spawnNextPhoto() {
   const spawnCount = 1;
 
   for (let index = 0; index < spawnCount && rainQueue.length; index += 1) {
-    createRainCard(rainQueue.shift());
+    const photo = rainQueue.shift();
+    lastRainedPhotoId = photo.id;
+    createRainCard(photo);
   }
 
   const buildingFirstWave = activeRainCards.length < concurrentLimit;
+  const baseDelay = buildingFirstWave
+    ? 180 + Math.random() * 360
+    : 420 + Math.random() * 900;
   rainSpawnTimer = window.setTimeout(
     spawnNextPhoto,
-    buildingFirstWave
-      ? 180 + Math.random() * 360
-      : 420 + Math.random() * 900,
+    Math.max(140, baseDelay / rainSpeedMultiplier),
   );
 }
 
@@ -1310,28 +1333,20 @@ function launchRain() {
   }
 
   removeRainCards();
-  const generation = rainGeneration;
   photoSky.classList.remove("is-reduced-motion");
   photoSky.replaceChildren(
     createElement(
       "p",
       "sky-instruction",
-      "MOVE SLOWLY — TAP OR CLICK TO CATCH",
+      "DRAG ANYWHERE — TAP TO CATCH",
     ),
   );
-  const shuffled = PHOTOS.slice().sort(
-    (first, second) =>
-      hashString(`${first.id}-${generation}`) -
-      hashString(`${second.id}-${generation}`),
-  );
-  rainQueue = shuffled;
+  rainQueue = makeRandomPhotoQueue();
   rainLastTime = performance.now();
   spawnNextPhoto();
   window.cancelAnimationFrame(rainFrame);
   rainFrame = window.requestAnimationFrame(animateRain);
 }
-
-document.querySelector("#rain-again")?.addEventListener("click", launchRain);
 
 if ("IntersectionObserver" in window) {
   const skyObserver = new IntersectionObserver(

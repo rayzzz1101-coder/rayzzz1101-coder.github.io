@@ -267,8 +267,7 @@ def main():
         )
         assert portrait_size["height"] > portrait_size["width"]
         page.locator("#photo-dialog-return").click()
-        page.locator("#rain-again").click()
-
+        page.locator("#photo-sky .falling-photo").first.wait_for(timeout=12_000)
         assert page.locator(".fallen-photos").count() == 0
         raining_photo = page.locator("#photo-sky .falling-photo").first
         assert "sepia" in raining_photo.locator("img").evaluate(

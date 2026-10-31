@@ -1321,7 +1321,6 @@ body.leaving-for-notes .letter-gallery {
 }
 
 .plain-button,
-.outline-button,
 .ink-button {
   border-radius: 0;
   cursor: pointer;
@@ -1636,25 +1635,6 @@ body.leaving-for-notes .letter-gallery {
   color: #5b554c;
   font-size: 0.82rem;
   line-height: 1.8;
-}
-
-.outline-button {
-  margin-top: 1.5rem;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--site-ink);
-  background: transparent;
-  color: var(--site-ink);
-  font-size: 0.7rem;
-}
-
-.outline-button:hover {
-  color: var(--site-paper);
-  background: var(--site-ink);
-}
-
-.outline-button span {
-  margin-left: 1rem;
-  color: var(--site-red-deep);
 }
 
 .photo-sky {
