@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="一封写给远方朋友的私人生日信：愿你一切都好。"
+    />
+    <title>Alles Gute · 一封会播放的信</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/opening.css" />
+    <link rel="stylesheet" href="css/turntable.css" />
+    <link rel="stylesheet" href="css/story.css" />
+    <link rel="stylesheet" href="css/finale.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <script src="js/content.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/turntable.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到信的内容</a>
+
+    <div
+      id="lock-screen"
+      class="lock-screen"
+      data-lock-screen
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="lock-title"
+    >
+      <div class="lock-screen__card">
+        <span class="lock-screen__seal" aria-hidden="true">A·G</span>
+        <h2 id="lock-title" class="lock-screen__title">一封私人信件</h2>
+        <p class="lock-screen__subtitle">输入四位数字暗号，拆开这封信</p>
+        <form class="lock-screen__form" data-lock-form autocomplete="off">
+          <input
+            type="password"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            maxlength="4"
+            class="lock-screen__input"
+            data-lock-input
+            placeholder="· · · ·"
+            aria-label="四位拆信暗号"
+            autofocus
+          />
+          <button type="submit" class="lock-screen__button">拆信</button>
+        </form>
+        <p class="lock-screen__error" data-lock-error aria-live="polite"></p>
+      </div>
+    </div>
+
+    <header id="opening" class="opening" data-opening>
+      <div class="opening__paper" aria-hidden="true"></div>
+      <div class="opening__vignette" aria-hidden="true"></div>
+      <div class="opening__dust" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+
+      <div class="opening__content">
+        <h1 class="opening__headline">
+          <span class="sr-only">Alles Gute，愿你一切都好</span>
+
+          <div
+            class="calligraphy-stage"
+            data-calligraphy-stage
+            title="点击可重新书写"
+          >
+            <svg
+              class="handwriting"
+              viewBox="0 0 1100 310"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <defs>
+                <linearGradient id="gold-ink-grad" x1="0%" y1="0%" x2="100%" y2="20%">
+                  <stop offset="0%" stop-color="#f7efe0" />
+                  <stop offset="45%" stop-color="#f1deb4" />
+                  <stop offset="78%" stop-color="#d4af6a" />
+                  <stop offset="100%" stop-color="#f7efe0" />
+                </linearGradient>
+
+                <filter id="ink-glow" x="-10%" y="-10%" width="120%" height="120%">
+                  <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#050806" flood-opacity="0.5" />
+                </filter>
+
+                <!-- CoreText 提取的 Snell Roundhand 逐字精确矢量轮廓裁剪路径（无任何提前虚影，每笔严格限制在单字轮廓内） -->
+                <clipPath id="glyph-clip-0">
+                  <path d="M235.8 164.7 Q225.6 177.7 214.6 189.8 Q203.7 201.9 192.7 211.2 Q181.7 220.6 170.7 226.1 Q159.8 231.7 149.7 231.7 Q142.8 231.7 138.7 230.1 Q134.6 228.5 132.4 226.3 Q130.2 224.1 129.5 221.7 Q128.7 219.3 128.7 217.4 Q128.7 213.8 130.8 211.3 Q132.9 208.8 136.7 208.8 Q140.1 208.8 142.0 211.1 Q143.9 213.4 143.9 216.6 Q143.9 218.4 142.8 220.3 Q141.8 222.2 139.9 222.7 Q141.8 225.6 145.1 226.5 Q148.5 227.5 152.1 227.5 Q161.1 227.5 171.1 222.2 Q181.0 217.0 191.2 208.5 Q201.4 200.0 211.5 189.2 Q221.6 178.3 230.8 167.0 Q234.8 162.0 240.8 154.6 Q246.8 147.3 254.3 138.7 Q261.9 130.0 270.8 121.1 Q279.7 112.2 289.8 104.2 Q299.9 96.2 310.8 89.9 Q321.7 83.6 333.1 80.5 L333.7 81.3 Q326.6 87.8 318.8 97.5 Q311.0 107.2 303.6 118.4 Q296.1 129.6 289.4 142.0 Q282.7 154.4 277.5 166.7 Q272.4 179.0 269.3 190.3 Q266.3 201.7 266.3 211.1 Q266.3 217.6 268.5 222.1 Q270.7 226.6 277.4 226.6 Q281.4 226.6 286.6 223.7 Q291.7 220.8 297.4 215.9 Q303.0 211.1 308.6 205.2 Q314.2 199.3 319.2 193.6 Q324.2 187.8 328.2 182.6 Q332.2 177.5 334.5 174.3 L336.0 175.0 Q328.9 184.0 320.9 194.1 Q312.9 204.2 304.7 212.5 Q296.5 220.8 288.2 226.2 Q279.9 231.7 272.4 231.7 Q267.3 231.7 263.9 229.9 Q260.4 228.1 258.1 225.0 Q255.8 221.8 254.7 217.8 Q253.7 213.8 253.7 209.4 Q253.7 197.4 257.1 186.4 Q260.4 175.4 264.6 164.7 Z M265.7 162.2 Q275.1 142.6 288.0 124.0 Q300.9 105.3 318.6 88.5 L318.2 88.0 Q307.0 93.5 296.4 101.5 Q285.8 109.5 275.7 119.1 Q265.7 128.8 256.1 139.7 Q246.6 150.6 237.5 162.2 Z" />
+                </clipPath>
+
+                <clipPath id="glyph-clip-1">
+                  <path d="M404.3 83.8 Q385.6 112.2 371.7 132.9 Q357.8 153.6 348.0 168.3 Q338.1 183.0 331.8 192.5 Q325.5 202.1 321.9 208.2 Q318.4 214.2 317.0 217.8 Q315.6 221.4 315.6 223.9 Q315.6 229.2 320.3 229.2 Q325.5 229.2 332.5 224.9 Q339.6 220.6 347.7 213.1 Q355.8 205.6 364.1 195.7 Q372.5 185.7 380.5 174.3 L382.8 175.2 Q375.3 185.9 366.9 195.9 Q358.5 205.8 350.7 213.2 Q340.4 222.9 333.0 227.3 Q325.5 231.7 319.4 231.7 Q312.9 231.7 310.1 228.7 Q307.2 225.8 307.2 221.0 Q307.2 216.6 308.8 211.8 Q310.4 207.1 314.2 200.5 Q317.9 193.9 324.1 184.4 Q330.3 175.0 339.5 161.2 Q348.6 147.5 361.0 128.5 Q373.4 109.5 389.6 83.8 Z" />
+                </clipPath>
+
+                <clipPath id="glyph-clip-2">
+                  <path d="M450.9 83.8 Q432.2 112.2 418.3 132.9 Q404.5 153.6 394.6 168.3 Q384.7 183.0 378.4 192.5 Q372.1 202.1 368.6 208.2 Q365.0 214.2 363.6 217.8 Q362.3 221.4 362.3 223.9 Q362.3 229.2 366.9 229.2 Q372.1 229.2 379.2 224.9 Q386.2 220.6 394.3 213.1 Q402.4 205.6 410.8 195.7 Q419.2 185.7 427.1 174.3 L429.5 175.2 Q421.9 185.9 413.5 195.9 Q405.1 205.8 397.3 213.2 Q387.0 222.9 379.6 227.3 Q372.1 231.7 366.0 231.7 Q359.5 231.7 356.7 228.7 Q353.9 225.8 353.9 221.0 Q353.9 216.6 355.4 211.8 Q357.0 207.1 360.8 200.5 Q364.6 193.9 370.8 184.4 Q377.0 175.0 386.1 161.2 Q395.2 147.5 407.6 128.5 Q420.0 109.5 436.2 83.8 Z" />
+                </clipPath>
+
+                <clipPath id="glyph-clip-3">
+                  <path d="M464.9 164.5 Q464.9 161.5 463.4 160.1 Q461.8 158.6 459.5 158.6 Q455.1 158.6 449.9 162.1 Q444.8 165.5 439.8 170.7 Q434.7 175.8 430.6 181.7 Q426.5 187.6 424.4 192.2 Q429.0 191.4 436.0 188.9 Q442.9 186.5 449.3 183.0 Q455.7 179.4 460.3 174.7 Q464.9 169.9 464.9 164.5 Z M499.0 175.6 Q495.8 180.9 491.1 187.2 Q486.4 193.5 480.4 199.7 Q474.4 205.8 467.6 211.6 Q460.8 217.4 453.4 221.9 Q446.1 226.4 438.6 229.1 Q431.1 231.7 424.0 231.7 Q415.2 231.7 410.3 227.2 Q405.5 222.7 405.5 214.2 Q405.5 205.0 411.1 194.8 Q416.6 184.6 425.3 176.0 Q433.9 167.4 444.2 161.8 Q454.4 156.1 463.9 156.1 Q469.1 156.1 472.1 158.3 Q475.0 160.5 475.0 164.7 Q475.0 169.7 469.6 174.5 Q464.1 179.2 456.2 183.1 Q448.4 186.9 439.3 190.0 Q430.3 193.0 423.4 194.5 Q421.1 198.7 419.6 204.0 Q418.1 209.2 418.1 214.5 Q418.1 217.0 418.6 219.4 Q419.2 221.8 420.3 223.8 Q421.5 225.8 423.5 227.1 Q425.5 228.3 428.4 228.3 Q435.3 228.3 444.7 223.8 Q454.0 219.3 463.7 211.7 Q473.3 204.2 482.2 194.5 Q491.0 184.8 497.3 174.6 Z" />
+                </clipPath>
+
+                <clipPath id="glyph-clip-4">
+                  <path d="M568.3 175.8 Q562.0 185.9 553.7 195.9 Q545.4 205.8 535.5 213.8 Q525.6 221.8 514.0 226.7 Q502.3 231.7 489.1 231.7 Q484.1 231.7 479.6 230.4 Q475.2 229.2 472.0 226.6 Q468.7 224.1 466.7 220.2 Q464.7 216.3 464.7 211.1 Q464.7 205.6 468.3 201.2 Q471.9 196.8 478.0 196.8 Q481.1 196.8 483.1 198.4 Q485.1 200.0 485.1 203.1 Q485.1 206.1 483.6 208.2 Q482.2 210.3 479.2 210.3 Q476.9 210.3 475.6 209.0 Q474.2 207.7 473.8 205.8 Q471.5 207.1 470.6 209.5 Q469.8 211.9 469.8 214.5 Q469.8 221.8 475.3 225.5 Q480.9 229.2 487.8 229.2 Q492.2 229.2 495.5 227.4 Q498.8 225.6 501.0 222.8 Q503.2 219.9 504.2 216.1 Q505.3 212.4 505.3 208.6 Q505.3 204.6 503.9 200.3 Q502.5 196.0 500.9 191.8 Q499.2 187.6 497.7 183.5 Q496.2 179.4 496.2 175.8 Q496.2 171.2 498.1 167.5 Q500.0 163.9 503.3 161.3 Q506.5 158.8 510.7 157.4 Q514.9 156.1 519.5 156.1 Q528.0 156.1 533.2 159.8 Q538.5 163.4 538.5 169.5 Q538.5 175.0 534.4 177.5 Q530.3 180.0 525.2 180.0 Q526.5 177.7 527.4 174.5 Q528.4 171.2 528.4 168.5 Q528.4 164.3 525.7 161.4 Q523.1 158.6 518.3 158.6 Q512.2 158.6 509.3 162.3 Q506.3 165.9 506.3 171.2 Q506.3 175.8 507.9 180.0 Q509.5 184.2 511.6 188.4 Q513.5 192.6 515.0 197.0 Q516.6 201.4 516.6 206.9 Q516.6 210.9 514.8 214.6 Q513.0 218.2 510.1 221.3 Q507.2 224.3 503.5 226.4 Q499.8 228.5 496.0 229.2 L496.4 229.6 Q507.8 228.3 518.1 223.0 Q528.4 217.6 537.3 209.9 Q546.2 202.3 553.8 193.1 Q561.3 184.0 567.0 175.2 Z" />
+                </clipPath>
+
+                <clipPath id="glyph-clip-5">
+                  <path d="M690.9 63.5 Q686.1 67.7 683.6 73.4 Q681.0 79.2 681.0 84.5 Q681.0 88.9 682.3 93.1 Q683.6 97.3 685.7 99.8 Q699.3 91.4 714.8 85.9 Q730.4 80.5 746.8 80.5 Q750.5 80.5 754.6 81.1 Q758.7 81.7 762.1 83.3 Q765.5 84.9 767.7 87.8 Q769.9 90.8 769.9 95.2 Q769.9 102.1 765.9 106.8 Q761.9 111.6 755.6 114.5 Q749.3 117.4 741.5 118.7 Q733.8 120.0 726.2 120.0 Q716.5 120.0 706.0 117.1 Q695.5 114.3 687.5 106.3 Q681.5 110.5 675.1 117.5 Q668.6 124.6 663.3 132.8 Q657.9 141.0 654.5 149.6 Q651.0 158.2 651.0 165.5 Q651.0 169.9 651.7 173.8 Q652.5 177.7 654.5 180.5 Q656.5 183.4 659.8 185.1 Q663.2 186.7 668.2 186.7 Q674.1 186.7 680.2 184.4 Q686.3 182.1 691.5 178.9 Q696.8 175.6 700.6 172.2 Q704.3 168.9 705.2 166.8 Q707.3 162.4 709.1 158.6 Q710.9 154.8 713.2 152.0 Q715.5 149.2 718.7 147.5 Q722.0 145.8 726.8 145.8 Q728.1 145.8 729.2 146.4 Q730.4 147.1 730.4 148.9 Q730.4 151.2 726.2 156.1 Q722.0 160.9 717.6 166.6 Q711.1 178.1 702.8 190.1 Q694.5 202.1 684.2 211.6 Q673.9 221.2 661.3 227.3 Q648.7 233.4 633.8 233.4 Q626.6 233.4 620.5 231.4 Q614.3 229.4 609.6 225.7 Q605.0 222.0 602.4 216.9 Q599.8 211.7 599.8 205.6 Q599.8 200.2 602.4 196.0 Q605.0 191.8 610.9 191.8 Q613.8 191.8 616.0 194.0 Q618.2 196.2 618.2 199.1 Q618.2 202.5 616.3 204.6 Q614.3 206.7 610.9 206.5 Q610.3 206.5 609.1 206.4 Q608.0 206.3 607.3 205.8 Q606.9 207.3 606.9 208.6 Q606.9 209.6 606.9 210.7 Q606.9 215.3 609.2 219.1 Q611.5 222.9 615.3 225.5 Q619.1 228.1 624.0 229.5 Q629.0 230.8 634.4 230.8 Q645.8 230.8 655.3 225.4 Q664.9 219.9 672.8 211.7 Q680.8 203.5 687.4 194.0 Q694.1 184.4 699.3 176.2 L698.9 175.8 Q691.5 181.9 682.3 186.0 Q673.1 190.1 663.0 190.1 Q651.2 190.1 644.4 183.2 Q637.6 176.2 637.6 164.5 Q637.6 155.2 642.1 146.0 Q646.6 136.8 653.4 128.5 Q660.2 120.2 668.4 113.1 Q676.6 106.1 683.8 101.5 Q678.5 93.9 678.5 84.9 Q678.5 78.0 681.8 72.1 Q685.0 66.2 689.6 62.2 Z M761.5 93.3 Q761.5 89.5 759.7 87.5 Q757.9 85.5 755.1 84.5 Q752.2 83.4 749.1 83.2 Q745.9 83.0 743.0 83.0 Q736.1 83.0 728.8 84.9 Q721.6 86.8 714.5 89.7 Q707.5 92.7 701.0 96.5 Q694.5 100.4 689.2 104.6 Q694.5 110.7 704.2 114.1 Q714.0 117.4 726.4 117.4 Q733.1 117.4 739.4 115.9 Q745.7 114.3 750.5 111.2 Q755.4 108.2 758.4 103.7 Q761.5 99.2 761.5 93.3 Z" />
+                </clipPath>
+
+                <clipPath id="glyph-clip-6">
+                  <path d="M771.3 157.8 Q763.1 168.9 755.6 179.0 Q748.0 189.1 742.1 197.4 Q736.3 205.8 732.8 212.0 Q729.3 218.2 729.3 221.8 Q729.3 225.2 731.0 226.7 Q732.7 228.3 735.4 228.3 Q739.4 228.3 744.1 225.8 Q748.9 223.3 753.8 219.3 Q758.7 215.3 763.5 210.5 Q768.2 205.6 772.3 200.9 Q776.4 196.2 779.4 192.2 Q782.5 188.2 783.9 185.9 L802.4 157.8 L816.9 157.8 Q805.6 173.3 797.7 184.1 Q789.8 194.9 784.9 202.5 Q780.0 210.1 777.9 214.8 Q775.8 219.5 775.8 223.1 Q775.8 225.6 777.2 227.4 Q778.7 229.2 781.4 229.2 Q785.6 229.2 791.1 226.1 Q796.5 223.1 802.4 218.1 Q808.3 213.2 814.1 207.0 Q819.9 200.8 825.0 194.7 Q830.1 188.6 834.3 183.3 Q838.5 177.9 840.9 174.6 L843.0 175.2 Q840.4 178.8 836.2 184.3 Q832.0 189.9 826.8 196.1 Q821.5 202.3 815.6 208.7 Q809.8 215.1 803.6 220.1 Q797.4 225.2 791.4 228.4 Q785.4 231.7 780.2 231.7 Q774.3 231.7 770.8 228.4 Q767.4 225.2 767.4 219.7 Q767.4 215.5 768.7 211.6 Q770.1 207.7 770.7 206.7 L770.3 206.3 Q765.9 211.3 761.0 215.9 Q756.2 220.6 751.4 224.0 Q746.6 227.5 741.6 229.6 Q736.7 231.7 731.9 231.7 Q725.1 231.7 722.2 228.6 Q719.3 225.6 719.3 221.4 Q719.3 216.1 722.1 210.1 Q724.9 204.0 730.0 196.4 Q735.0 188.8 742.0 179.4 Q749.1 169.9 757.5 157.8 Z" />
+                </clipPath>
+
+                <clipPath id="glyph-clip-7">
+                  <path d="M878.0 133.4 L861.4 157.8 L889.1 157.8 L887.9 160.3 L859.8 160.3 Q851.4 173.9 844.7 183.9 Q838.1 193.9 833.6 201.1 Q829.1 208.4 826.8 213.3 Q824.5 218.2 824.5 222.0 Q824.5 226.0 827.2 227.6 Q829.9 229.2 833.5 229.2 Q841.1 229.2 850.2 223.4 Q859.3 217.6 868.4 209.2 Q877.4 200.8 885.6 191.4 Q893.8 181.9 899.4 174.3 L900.7 175.2 Q893.6 184.2 885.1 194.2 Q876.5 204.2 867.5 212.5 Q858.5 220.8 849.4 226.2 Q840.2 231.7 832.0 231.7 Q825.5 231.7 820.8 227.7 Q816.1 223.7 816.1 216.6 Q816.1 211.7 818.8 205.7 Q821.5 199.8 825.9 192.8 Q830.4 185.9 835.9 177.7 Q841.5 169.5 847.4 160.3 L836.0 160.3 L837.3 157.8 L849.0 157.8 L865.4 133.4 Z" />
+                </clipPath>
+
+                <clipPath id="glyph-clip-8">
+                  <path d="M937.2 164.5 Q937.2 161.5 935.7 160.1 Q934.1 158.6 931.8 158.6 Q927.4 158.6 922.2 162.1 Q917.1 165.5 912.0 170.7 Q907.0 175.8 902.9 181.7 Q898.8 187.6 896.7 192.2 Q901.3 191.4 908.3 188.9 Q915.2 186.5 921.6 183.0 Q928.0 179.4 932.6 174.7 Q937.2 169.9 937.2 164.5 Z M971.3 175.6 Q968.1 180.9 963.4 187.2 Q958.7 193.5 952.7 199.7 Q946.7 205.8 939.9 211.6 Q933.0 217.4 925.7 221.9 Q918.3 226.4 910.9 229.1 Q903.4 231.7 896.3 231.7 Q887.5 231.7 882.6 227.2 Q877.8 222.7 877.8 214.2 Q877.8 205.0 883.4 194.8 Q888.9 184.6 897.5 176.0 Q906.2 167.4 916.5 161.8 Q926.7 156.1 936.2 156.1 Q941.4 156.1 944.4 158.3 Q947.3 160.5 947.3 164.7 Q947.3 169.7 941.9 174.5 Q936.4 179.2 928.5 183.1 Q920.6 186.9 911.6 190.0 Q902.6 193.0 895.7 194.5 Q893.4 198.7 891.9 204.0 Q890.4 209.2 890.4 214.5 Q890.4 217.0 890.9 219.4 Q891.5 221.8 892.6 223.8 Q893.8 225.8 895.8 227.1 Q897.8 228.3 900.7 228.3 Q907.6 228.3 917.0 223.8 Q926.3 219.3 936.0 211.7 Q945.6 204.2 954.5 194.5 Q963.3 184.8 969.6 174.6 Z" />
+                </clipPath>
+              </defs>
+
+              <!-- 逐字独立裁剪书写层：未写到的字母完全透明（无任何虚影），光点与当前运笔路径 100% 同步 -->
+              <g class="handwriting__ink-layer" filter="url(#ink-glow)">
+                <!-- A -->
+                <g clip-path="url(#glyph-clip-0)">
+                  <path
+                    class="write-stroke"
+                    data-write-stroke
+                    data-duration="540"
+                    d="M 136 214 C 132 228, 155 232, 182 216 C 225 186, 278 112, 333 81 C 302 118, 262 184, 267 220 C 272 234, 305 215, 335 175"
+                  />
+                  <path
+                    class="write-stroke"
+                    data-write-stroke
+                    data-duration="170"
+                    d="M 228 164 L 280 164"
+                  />
+                </g>
+
+                <!-- l -->
+                <g clip-path="url(#glyph-clip-1)">
+                  <path
+                    class="write-stroke"
+                    data-write-stroke
+                    data-duration="280"
+                    d="M 398 84 C 368 128, 326 192, 314 218 C 310 232, 338 228, 382 175"
+                  />
+                </g>
+
+                <!-- l -->
+                <g clip-path="url(#glyph-clip-2)">
+                  <path
+                    class="write-stroke"
+                    data-write-stroke
+                    data-duration="280"
+                    d="M 444 84 C 414 128, 372 192, 360 218 C 356 232, 384 228, 428 175"
+                  />
+                </g>
+
+                <!-- e -->
+                <g clip-path="url(#glyph-clip-3)">
+                  <path
+                    class="write-stroke"
+                    data-write-stroke
+                    data-duration="270"
+                    d="M 424 193 C 452 186, 474 170, 466 159 C 452 152, 412 184, 412 216 C 412 234, 456 226, 498 175"
+                  />
+                </g>
+
+                <!-- s -->
+                <g clip-path="url(#glyph-clip-4)">
+                  <path
+                    class="write-stroke"
+                    data-write-stroke
+                    data-duration="310"
+                    d="M 534 172 C 534 156, 502 156, 502 175 C 502 192, 516 206, 506 222 C 494 234, 466 226, 474 203 C 482 228, 528 226, 568 175"
+                  />
+                </g>
+
+                <!-- G -->
+                <g clip-path="url(#glyph-clip-5)">
+                  <path
+                    class="write-stroke"
+                    data-write-stroke
+                    data-duration="560"
+                    d="M 690 63 C 676 80, 682 116, 736 118 C 772 116, 768 80, 736 82 C 692 84, 642 128, 644 168 C 646 194, 696 188, 728 148 C 704 188, 668 232, 632 232 C 604 232, 598 202, 614 196"
+                  />
+                </g>
+
+                <!-- u -->
+                <g clip-path="url(#glyph-clip-6)">
+                  <path
+                    class="write-stroke"
+                    data-write-stroke
+                    data-duration="320"
+                    d="M 764 158 C 742 188, 722 214, 726 225 C 732 234, 774 202, 810 158 C 790 186, 768 214, 774 226 C 780 234, 814 212, 842 175"
+                  />
+                </g>
+
+                <!-- t -->
+                <g clip-path="url(#glyph-clip-7)">
+                  <path
+                    class="write-stroke"
+                    data-write-stroke
+                    data-duration="250"
+                    d="M 872 133 C 848 168, 818 208, 822 224 C 826 234, 864 218, 900 175"
+                  />
+                  <path
+                    class="write-stroke"
+                    data-write-stroke
+                    data-duration="140"
+                    d="M 836 159 L 889 159"
+                  />
+                </g>
+
+                <!-- e -->
+                <g clip-path="url(#glyph-clip-8)">
+                  <path
+                    class="write-stroke"
+                    data-write-stroke
+                    data-duration="280"
+                    d="M 896 193 C 924 186, 946 170, 938 159 C 924 152, 884 184, 884 216 C 884 234, 928 226, 970 175"
+                  />
+                </g>
+              </g>
+
+              <!-- 实时锁定在当前笔尖中线的金色光点 -->
+              <g class="handwriting__nib" data-pen-nib>
+                <circle class="handwriting__nib-halo" cx="0" cy="0" r="14" />
+                <circle class="handwriting__nib-core" cx="0" cy="0" r="3.2" />
+              </g>
+            </svg>
+          </div>
+        </h1>
+
+        <div class="opening__copy">
+          <p data-bind="opening.lead">
+            愿你一切都好。这里有一封写给你的生日信，里面装着会播放的声音和慢慢说给你的故事。
+          </p>
+          <span class="opening__translation" data-bind="opening.translation">
+            Alles Gute · 愿你一切都好
+          </span>
+        </div>
+      </div>
+
+      <a class="opening__cue" href="#record">
+        <span>向下拆信</span>
+        <i aria-hidden="true"></i>
+      </a>
+    </header>
+
+    <main id="main">
+      <section
+        id="record"
+        class="record-section"
+        data-record-section
+        data-state="idle"
+        aria-labelledby="record-title"
+      >
+        <div class="record-section__copy" data-reveal>
+          <h2 id="record-title">把这一刻播放出来</h2>
+
+          <p class="record-section__note">
+            我在很远的地方，为你留了一段声音。
+          </p>
+
+          <p class="record-section__status" data-record-status aria-live="polite">
+            轻触唱片，或拨动唱臂落针。
+          </p>
+        </div>
+
+        <figure class="turntable" data-reveal>
+          <svg
+            class="turntable__svg"
+            viewBox="0 0 880 580"
+            role="group"
+            aria-label="可落针播放的黑胶唱片机"
+          >
+            <defs>
+              <linearGradient id="plinth-wood" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#2e1f15" />
+                <stop offset="50%" stop-color="#1e140d" />
+                <stop offset="100%" stop-color="#120b07" />
+              </linearGradient>
+
+              <linearGradient id="deck-metal" x1="0%" y1="0%" x2="100%" y2="85%">
+                <stop offset="0%" stop-color="#21201d" />
+                <stop offset="55%" stop-color="#151412" />
+                <stop offset="100%" stop-color="#0d0c0b" />
+              </linearGradient>
+
+              <linearGradient id="platter-rim" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#9e9585" />
+                <stop offset="30%" stop-color="#474239" />
+                <stop offset="50%" stop-color="#d5c9b4" />
+                <stop offset="75%" stop-color="#38342d" />
+                <stop offset="100%" stop-color="#8a7f6d" />
+              </linearGradient>
+
+              <radialGradient id="vinyl-surface" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#1c1b18" />
+                <stop offset="35%" stop-color="#0d0d0c" />
+                <stop offset="88%" stop-color="#070707" />
+                <stop offset="97%" stop-color="#181715" />
+                <stop offset="100%" stop-color="#050505" />
+              </radialGradient>
+
+              <linearGradient id="vinyl-sheen-a" x1="15%" y1="15%" x2="85%" y2="85%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
+                <stop offset="43%" stop-color="#f7e7c4" stop-opacity="0.015" />
+                <stop offset="49%" stop-color="#fff6e0" stop-opacity="0.13" />
+                <stop offset="51%" stop-color="#fff6e0" stop-opacity="0.13" />
+                <stop offset="57%" stop-color="#f7e7c4" stop-opacity="0.015" />
+                <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+              </linearGradient>
+
+              <linearGradient id="vinyl-sheen-b" x1="85%" y1="15%" x2="15%" y2="85%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
+                <stop offset="45%" stop-color="#d0ad6d" stop-opacity="0" />
+                <stop offset="50%" stop-color="#e8cf9c" stop-opacity="0.07" />
+                <stop offset="55%" stop-color="#d0ad6d" stop-opacity="0" />
+                <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+              </linearGradient>
+
+              <radialGradient id="label-gold" cx="38%" cy="32%" r="70%">
+                <stop offset="0%" stop-color="#f5ead2" />
+                <stop offset="52%" stop-color="#dec79b" />
+                <stop offset="88%" stop-color="#b89352" />
+                <stop offset="100%" stop-color="#8b6b35" />
+              </radialGradient>
+
+              <linearGradient id="brass-metal" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f0dca8" />
+                <stop offset="35%" stop-color="#c6a05e" />
+                <stop offset="70%" stop-color="#8a6b36" />
+                <stop offset="100%" stop-color="#dfc188" />
+              </linearGradient>
+
+              <linearGradient id="arm-chrome" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#786b56" />
+                <stop offset="35%" stop-color="#efe5d0" />
+                <stop offset="60%" stop-color="#b9a481" />
+                <stop offset="100%" stop-color="#4d4335" />
+              </linearGradient>
+
+              <radialGradient id="needle-glow-grad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ffefc2" stop-opacity="0.95" />
+                <stop offset="35%" stop-color="#e5b968" stop-opacity="0.5" />
+                <stop offset="100%" stop-color="#d0ad6d" stop-opacity="0" />
+              </radialGradient>
+
+              <filter id="platter-shadow" x="-15%" y="-15%" width="130%" height="130%">
+                <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#000000" flood-opacity="0.72" />
+              </filter>
+
+              <filter id="arm-shadow-rest" x="-30%" y="-20%" width="160%" height="160%">
+                <feDropShadow dx="-14" dy="20" stdDeviation="8" flood-color="#000000" flood-opacity="0.65" />
+              </filter>
+
+              <filter id="arm-shadow-down" x="-30%" y="-20%" width="160%" height="160%">
+                <feDropShadow dx="-4" dy="6" stdDeviation="3" flood-color="#000000" flood-opacity="0.82" />
+              </filter>
+            </defs>
+
+            <!-- 极简胡桃木与拉丝暗金唱盘机身 -->
+            <rect class="turntable__shadow" x="24" y="24" width="832" height="536" rx="20" />
+            <rect class="turntable__plinth" x="16" y="14" width="848" height="540" rx="16" fill="url(#plinth-wood)" />
+            <rect class="turntable__plinth-bevel" x="22" y="20" width="836" height="528" rx="12" />
+            <rect class="turntable__deck" x="40" y="38" width="800" height="492" rx="8" fill="url(#deck-metal)" />
+
+            <!-- 左下角单颗呼吸电源指示灯 -->
+            <g class="turntable__badge-group" aria-hidden="true">
+              <circle class="strobe-lamp-halo" cx="84" cy="486" r="14" />
+              <circle class="strobe-lamp" cx="84" cy="486" r="4.5" />
+              <text class="turntable__model-text" x="106" y="490">33⅓ RPM</text>
+            </g>
+
+            <!-- 黑胶转盘主体（中心 cx=356, cy=284，整张唱片也可直接点击落针/抬针） -->
+            <g class="platter-assembly" data-platter-toggle role="button" tabindex="0" aria-label="点击黑胶唱片落针播放或暂停">
+              <circle cx="356" cy="284" r="236" fill="url(#platter-rim)" filter="url(#platter-shadow)" />
+              <circle cx="356" cy="284" r="230" fill="#0c0c0b" />
+
+              <g class="record" data-record-disc aria-hidden="true">
+                <circle class="record__strobe-dots" cx="356" cy="284" r="233" />
+                <circle class="record__disc" cx="356" cy="284" r="224" fill="url(#vinyl-surface)" />
+
+                <circle class="record__groove record__groove--lead" cx="356" cy="284" r="212" />
+                <circle class="record__groove" cx="356" cy="284" r="204" />
+                <circle class="record__groove record__groove--fine" cx="356" cy="284" r="196" />
+                <circle class="record__groove" cx="356" cy="284" r="188" />
+                <circle class="record__groove record__groove--fine" cx="356" cy="284" r="180" />
+                <circle class="record__groove record__groove--band" cx="356" cy="284" r="170" />
+                <circle class="record__groove" cx="356" cy="284" r="161" />
+                <circle class="record__groove record__groove--fine" cx="356" cy="284" r="153" />
+                <circle class="record__groove" cx="356" cy="284" r="145" />
+                <circle class="record__groove record__groove--band" cx="356" cy="284" r="134" />
+                <circle class="record__groove" cx="356" cy="284" r="124" />
+                <circle class="record__groove record__groove--fine" cx="356" cy="284" r="115" />
+                <circle class="record__groove record__groove--leadout" cx="356" cy="284" r="102" />
+
+                <circle class="record__label-outer" cx="356" cy="284" r="78" />
+                <circle class="record__label" cx="356" cy="284" r="70" fill="url(#label-gold)" />
+                <circle class="record__label-inner-ring" cx="356" cy="284" r="60" />
+
+                <text class="record__label-main" x="356" y="272" text-anchor="middle">我要的幸福</text>
+                <text class="record__label-sub" x="356" y="314" text-anchor="middle">孙燕姿 · 33⅓</text>
+              </g>
+
+              <g class="record__sheen-layer" aria-hidden="true">
+                <circle cx="356" cy="284" r="223" fill="url(#vinyl-sheen-a)" />
+                <circle cx="356" cy="284" r="223" fill="url(#vinyl-sheen-b)" />
+              </g>
+
+              <circle class="record__spindle-base" cx="356" cy="284" r="10" />
+              <circle class="record__spindle" cx="356" cy="284" r="5" fill="url(#brass-metal)" />
+            </g>
+
+            <!-- 极简外圈呼吸光点（cx=554, cy=354） -->
+            <g
+              class="record__target"
+              data-drop-target
+              role="button"
+              tabindex="0"
+              aria-label="落针播放"
+            >
+              <circle class="record__target-hit" cx="554" cy="354" r="48" />
+              <circle class="record__target-ring record__target-ring--outer" cx="554" cy="354" r="20" />
+              <circle class="record__target-core" cx="554" cy="354" r="4.5" />
+            </g>
+
+            <!-- 落针瞬间的声波扩散涟漪与针尖暖光点 -->
+            <g class="needle-contact" data-needle-contact aria-hidden="true">
+              <circle class="needle-contact__glow" cx="554" cy="354" r="26" fill="url(#needle-glow-grad)" />
+              <circle class="needle-contact__ripple needle-contact__ripple--1" cx="554" cy="354" r="8" />
+              <circle class="needle-contact__ripple needle-contact__ripple--2" cx="554" cy="354" r="8" />
+              <circle class="needle-contact__spark" cx="554" cy="354" r="3" />
+            </g>
+
+            <!-- 唱臂托架 -->
+            <g class="tonearm-rest" aria-hidden="true">
+              <path class="tonearm-rest__cue-bar" d="M 688 228 Q 710 232 732 226" />
+              <rect x="728" y="292" width="22" height="30" rx="4" fill="#2c261e" stroke="#6f5b3a" stroke-width="1.2" />
+              <path d="M 733 298 L 733 316 M 745 298 L 745 316" stroke="#d0ad6d" stroke-width="2" stroke-linecap="round" />
+            </g>
+
+            <!-- S型金属平衡唱臂（旋转轴心 cx=740, cy=120，静止唱针尖位于 727, 420） -->
+            <g
+              class="tonearm"
+              data-tonearm
+              tabindex="0"
+              role="slider"
+              aria-label="唱臂"
+              aria-valuemin="0"
+              aria-valuemax="50"
+              aria-valuenow="0"
+            >
+              <g class="tonearm__body" filter="url(#arm-shadow-rest)">
+                <rect class="tonearm__stub" x="734" y="42" width="12" height="50" rx="4" fill="url(#arm-chrome)" />
+                <rect class="tonearm__weight" x="720" y="50" width="40" height="30" rx="6" fill="url(#brass-metal)" />
+                <line x1="720" y1="65" x2="760" y2="65" stroke="#231c12" stroke-width="1.5" />
+
+                <circle class="tonearm__gimbal-outer" cx="740" cy="120" r="42" />
+                <circle class="tonearm__gimbal-ring" cx="740" cy="120" r="32" fill="url(#brass-metal)" />
+                <circle class="tonearm__gimbal-inner" cx="740" cy="120" r="22" />
+                <rect class="tonearm__bridge" x="721" y="111" width="38" height="18" rx="4" fill="url(#brass-metal)" />
+                <circle cx="740" cy="120" r="4.5" fill="#18140e" />
+
+                <circle cx="782" cy="130" r="8" fill="url(#brass-metal)" />
+                <line x1="764" y1="123" x2="782" y2="130" stroke="#d0ad6d" stroke-width="1.8" />
+
+                <path
+                  class="tonearm__tube-shadow"
+                  d="M 740 130 C 753 190, 759 240, 741 295 C 725 343, 727 357, 731 377"
+                />
+                <path
+                  class="tonearm__tube"
+                  d="M 740 130 C 753 190, 759 240, 741 295 C 725 343, 727 357, 731 377"
+                />
+                <rect x="725" y="369" width="12" height="9" rx="2" fill="url(#brass-metal)" />
+
+                <g class="tonearm__headshell">
+                  <path
+                    class="tonearm__finger-lift"
+                    d="M 741 393 C 759 391, 767 401, 763 413"
+                  />
+                  <path
+                    class="tonearm__shell-body"
+                    d="M 721 377 L 740 377 L 743 421 L 733 431 L 721 431 L 716 419 Z"
+                  />
+                  <rect x="723" y="385" width="14" height="24" rx="2" fill="url(#brass-metal)" opacity="0.85" />
+                  <circle cx="730" cy="391" r="1.8" fill="#18140e" />
+                  <circle cx="730" cy="403" r="1.8" fill="#18140e" />
+
+                  <circle class="tonearm__stylus-glow" cx="727" cy="420" r="10" />
+                  <circle class="tonearm__stylus-tip" cx="727" cy="420" r="3" />
+                </g>
+              </g>
+
+              <path
+                class="tonearm__hit"
+                d="M 740 115 L 743 295 L 727 431"
+              />
+            </g>
+          </svg>
+        </figure>
+      </section>
+
+      <section id="first-memory" class="chapter chapter--first" aria-labelledby="first-title">
+        <figure class="chapter__photo chapter__photo--lead" data-photo-slot="first">
+          <img
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+            width="1120"
+            height="1498"
+            alt=""
+            fetchpriority="high"
+          />
+        </figure>
+        <div class="chapter__body" data-reveal>
+          <h2 id="first-title" data-bind="chapters.first.title"></h2>
+          <div class="chapter__letter" data-letter-group="first"></div>
+        </div>
+      </section>
+
+      <section id="distance" class="distance" aria-labelledby="distance-title">
+        <figure class="distance__photo distance__photo--left" data-photo-slot="distanceLeft">
+          <img
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+            width="2200"
+            height="1650"
+            alt=""
+            loading="lazy"
+          />
+          <figcaption></figcaption>
+        </figure>
+
+        <div class="distance__letter" data-reveal>
+          <h2 id="distance-title" data-bind="chapters.distance.title"></h2>
+          <span class="distance__signal" aria-hidden="true"></span>
+          <div class="chapter__letter" data-letter-group="distance"></div>
+        </div>
+
+        <figure class="distance__photo distance__photo--right" data-photo-slot="distanceRight">
+          <img
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+            width="2200"
+            height="1650"
+            alt=""
+            loading="lazy"
+          />
+          <figcaption></figcaption>
+        </figure>
+      </section>
+
+      <section id="small-things" class="small-things" aria-labelledby="small-title">
+        <div class="small-things__heading" data-reveal>
+          <h2 id="small-title" data-bind="chapters.small.title"></h2>
+          <div class="chapter__letter" data-letter-group="small"></div>
+        </div>
+
+        <div class="small-things__gallery" data-small-gallery></div>
+      </section>
+
+      <section id="letter" class="letter-section" aria-labelledby="letter-title">
+        <div class="letter-section__heading" data-reveal>
+          <h2 id="letter-title" data-bind="chapters.letter.title"></h2>
+          <p>把这段青春折好，放进书桌的角落里。</p>
+        </div>
+
+        <article class="letter-sheet" data-reveal>
+          <p class="letter-sheet__greeting" data-bind="letter.greeting"></p>
+          <div class="letter-sheet__body" data-letter-group="core"></div>
+          <div class="letter-sheet__closing">
+            <p data-bind="letter.closing"></p>
+            <p data-bind="letter.signature"></p>
+          </div>
+        </article>
+      </section>
+
+      <section id="birthday" class="finale" aria-labelledby="finale-title">
+        <div class="finale__copy" data-reveal>
+          <h2 id="finale-title">生日快乐，<span data-bind="friendName">你</span></h2>
+          <p data-bind="finale.message"></p>
+          <button class="button button--light" type="button" data-light-candle aria-pressed="false">
+            点亮这盏灯
+          </button>
+          <p class="finale__status" data-candle-status aria-live="polite">
+            光还没有亮起来。
+          </p>
+        </div>
+
+        <div class="finale__scene" aria-hidden="true">
+          <div class="light-field"></div>
+          <div class="candle-object">
+            <span class="candle-object__flame"></span>
+            <span class="candle-object__wick"></span>
+            <span class="candle-object__wax"></span>
+          </div>
+          <p class="finale__wish" data-bind="finale.wish">愿你一切都好。</p>
+        </div>
+        <div class="embers" data-embers aria-hidden="true"></div>
+      </section>
+    </main>
+
+    <footer class="sleeve" aria-labelledby="sleeve-title">
+      <div class="sleeve__copy">
+        <span class="sleeve__mark" aria-hidden="true">A·G</span>
+        <h2 id="sleeve-title">Für dich.</h2>
+        <p>给你，也给我的一份青春小存档。</p>
+        <p class="sleeve__signature">From <span data-bind="senderName"></span></p>
+      </div>
+      <a class="sleeve__back" href="#opening">回到 Alles Gute</a>
+    </footer>
+
+    <button class="sound-toggle" type="button" data-sound-toggle aria-pressed="false" hidden>
+      声音开
+    </button>
+
+    <audio data-audio preload="metadata"></audio>
+  </body>
+</html>
