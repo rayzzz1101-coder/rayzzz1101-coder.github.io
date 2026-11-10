@@ -39,6 +39,11 @@ jobs:
           VITE_API_BASE_URL: https://evident-flamingo-d1ez1ke6e21c393-1521256935.ap-shanghai.app.tcloudbase.com/ray-api
         run: npm run build
 
+      - name: Add Alles Gute birthday site
+        run: |
+          mkdir -p three-lab/dist/birthday-site
+          cp -R birthday-site/. three-lab/dist/birthday-site/
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
