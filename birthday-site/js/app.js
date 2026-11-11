@@ -76,7 +76,13 @@
 
     document.querySelectorAll("[data-bind]").forEach((node) => {
       const value = getPath(content, node.dataset.bind);
-      if (typeof value === "string" && value.trim()) node.textContent = value;
+      if (typeof value === "string" && value.trim()) {
+        if (value.includes("\n")) {
+          node.innerHTML = value.replace(/\n/g, "<br>");
+        } else {
+          node.textContent = value;
+        }
+      }
     });
 
     const setPhoto = (selector, photo) => {
@@ -96,6 +102,7 @@
     setPhoto('[data-photo-slot="first"]', content.photos?.first);
     setPhoto('[data-photo-slot="distanceLeft"]', content.photos?.distanceLeft);
     setPhoto('[data-photo-slot="distanceRight"]', content.photos?.distanceRight);
+    setPhoto('[data-photo-slot="ramblings"]', content.photos?.ramblings);
 
     const smallGallery = document.querySelector("[data-small-gallery]");
     if (smallGallery && Array.isArray(content.photos?.small) && content.photos.small.length) {

@@ -248,7 +248,7 @@
 
         <div class="opening__copy">
           <p data-bind="opening.lead">
-            愿你一切都好。这里有一封写给你的生日信，里面装着会播放的声音和慢慢说给你的故事。
+            一晃两年过去，咱们都奔着二走了。<br />我把这封迟到了两年的信，关于成长、回忆、想对你说的话，都装进了这页唱片里。
           </p>
           <span class="opening__translation" data-bind="opening.translation">
             Alles Gute · 愿你一切都好
@@ -549,6 +549,9 @@
         <div class="distance__letter" data-reveal>
           <h2 id="distance-title" data-bind="chapters.distance.title"></h2>
           <span class="distance__signal" aria-hidden="true"></span>
+        <aside class="distance__watermark" aria-hidden="true">
+          <span data-bind="quotes.growth">“ 希望你在向上 在奋斗 ”</span>
+        </aside>
           <div class="chapter__letter" data-letter-group="distance"></div>
         </div>
 
@@ -573,6 +576,23 @@
         <div class="small-things__gallery" data-small-gallery></div>
       </section>
 
+      <section id="ramblings" class="chapter chapter--ramblings" aria-labelledby="ramblings-title">
+        <figure class="chapter__photo chapter__photo--ramblings" data-photo-slot="ramblings">
+          <img
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+            width="1650"
+            height="2200"
+            alt=""
+            loading="lazy"
+          />
+          <figcaption></figcaption>
+        </figure>
+        <div class="chapter__body" data-reveal>
+          <h2 id="ramblings-title" data-bind="chapters.ramblings.title"></h2>
+          <div class="chapter__letter" data-letter-group="ramblings"></div>
+        </div>
+      </section>
+
       <section id="letter" class="letter-section" aria-labelledby="letter-title">
         <div class="letter-section__heading" data-reveal>
           <h2 id="letter-title" data-bind="chapters.letter.title"></h2>
@@ -593,6 +613,9 @@
         <div class="finale__copy" data-reveal>
           <h2 id="finale-title">生日快乐，<span data-bind="friendName">你</span></h2>
           <p data-bind="finale.message"></p>
+          <blockquote class="finale__quote-banner" data-reveal>
+            <p class="finale__quote-text" data-bind="quotes.finale">“所以 做你认为正确的事吧”</p>
+          </blockquote>
           <button class="button button--light" type="button" data-light-candle aria-pressed="false">
             点亮这盏灯
           </button>

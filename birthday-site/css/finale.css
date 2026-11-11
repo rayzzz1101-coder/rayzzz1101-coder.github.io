@@ -289,3 +289,39 @@
     transform: translate(calc(var(--x) + var(--drift)), var(--y));
   }
 }
+
+/* 日记箴言光影横幅 */
+.finale__quote-banner {
+  margin: 24px auto 32px;
+  padding: 16px 28px;
+  max-width: 42ch;
+  border: 1px solid rgb(208 173 109 / 0.32);
+  border-radius: 999px;
+  background: rgb(24 38 29 / 0.45);
+  box-shadow: 0 8px 32px rgb(0 0 0 / 0.35);
+  backdrop-filter: blur(8px);
+  transition:
+    border-color 800ms ease,
+    box-shadow 800ms ease;
+}
+
+.finale__quote-text {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: clamp(1.05rem, 0.95rem + 0.35vw, 1.25rem);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--brass-light);
+  text-align: center;
+  transition: color 800ms ease, text-shadow 800ms ease;
+}
+
+.finale.is-lit .finale__quote-banner {
+  border-color: rgb(243 222 180 / 0.65);
+  box-shadow: 0 12px 40px rgb(229 185 104 / 0.28);
+}
+
+.finale.is-lit .finale__quote-text {
+  color: #fff4d6;
+  text-shadow: 0 0 16px rgb(255 239 194 / 0.65);
+}
